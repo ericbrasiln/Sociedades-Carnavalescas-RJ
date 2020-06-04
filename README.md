@@ -6,7 +6,6 @@ Autor: __Eric Brasil__
 
 **A ferramenta foi desenvolvida apenas para pesquisas acadêmicas, sem fins lucrativos.**
 
-
 ## Índice
 - [Introdução](#introdução);
 - [Pesquisa](#pesquisa);
