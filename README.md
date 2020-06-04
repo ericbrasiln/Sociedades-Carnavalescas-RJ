@@ -1,4 +1,7 @@
-<p align="center"><img src="images/capa-SC.png" width="100%"/></p>
+<p align="center"><img src="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/blob/gh-pages/images/capa%20banco%20de%20dados.png"/></p>
+
+# Sociedades-Carnavalescas-RJ
+ *Banco de dados a partir da documentação do GIFI-AN: pedidos de licenças de sociedades carnavalescas entre 1900 e 1914.*
 
 Autor: __Eric Brasil__
 
