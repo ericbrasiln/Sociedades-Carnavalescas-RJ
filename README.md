@@ -1,6 +1,8 @@
-<p align="center"><img src="/home/ebn/Documentos/GitHub/Sociedades-Carnavalescas-RJ/images/capa banco de dados.png"/></p>
-# Sociedades-Carnavalescas-RJ
- *Banco de dados a partir da documentação do GIFI-AN: pedidos de licenças de sociedades carnavalescas entre 1900 e 1914.*
+<p align="center"><img src="images/capa-SC.png" width="100%"/></p>
+
+Autor: __Eric Brasil__
+
+ *Banco de dados produzido a partir da documentação do GIFI-AN: pedidos de licenças de sociedades carnavalescas entre 1900 e 1914.*
 
 **A ferramenta foi desenvolvida apenas para pesquisas acadêmicas, sem fins lucrativos.**
 
@@ -21,7 +23,7 @@ A publicização desse banco de dados foi pensado como uma ferramenta metodológ
 Defendemos a importância da apropriação, uso, desenvolvimento e aprimoramento de ferramentas
 digitais para as humanidades, assim como a urgência na sofisticação teórica, metodológica e epistemológica sobre as chamadas Humanidades Digitais.
 
-É crescente o número de repositórios de fontes e dados on-line, assim como o acesso, busca, pesquisa e, muitas vezes, dependência de pesquisadores/as a eles. O JusBrasil tem sido importante nas pesquisas de História, Ciências Sociais, Direito, etc, pois reúne milhares de documentos coletados dos Diários Oficiais, federal, estaduais e municipais, assim como dos Tribunais de justiça, de contas, entre inúmeros de outros.
+É crescente o número de repositórios de fontes e dados on-line, assim como o acesso, busca, pesquisa e, muitas vezes, dependência de pesquisadores/as a eles.
 
 ## Pesquisa:
 Explicar a pesquisa de doutorado.
