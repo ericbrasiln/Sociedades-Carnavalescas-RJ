@@ -43,19 +43,19 @@ O Banco de dados Sociedades Carnavalescas possui 1178 entradas, contendo as segu
 - Nome da Sociedade;
 - Data (do pedido);
 - Endereço (da associação);
-- Licença (se é um pedido de licença); True/False
-- Estatuto (se consta estatuto); True/False
+- Licença (se é um pedido de licença); *True/False*
+- Estatuto (se consta estatuto); *True/False*
 - Notação-GIFI;
 - Tipo de licença;
 - Obs (comentários breves da época da pesquisa);
 - Presidente (se há registro);
-- Licença anterior (se há registro); True/False
-- Nomes/Sujeitos (quando há referência aos membros ou diretoria); True/False
-- Doc policial (se é um documento interno da polícia); True/False
+- Licença anterior (se há registro); *True/False*
+- Nomes/Sujeitos (quando há referência aos membros ou diretoria); *True/False*
+- Doc policial (se é um documento interno da polícia); *True/False*
 
 **As colunas booleanas (True/False) indicam se a informação consta na fonte.**
 
-**As fontes estão todas fotografadas e em breve serão disponibilizadas para acesso.**
+**As fontes estão todas fotografadas e em breve serão disponibilizadas para acesso. E então será incluída uma nova coluna IMG (com a referência da fotografia) e o link para o arquivo.**
 
 ### Uso e funcionalidade:
 No site é possível pesquisar os termos desejados, escolher a quantidade de registros visíveis por páginas, ordenar por qualquer coluna e fazer download do arquivo CSV completo.
