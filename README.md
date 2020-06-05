@@ -5,6 +5,7 @@ Autor: __Eric Brasil__
  *Banco de dados produzido a partir da documentação do GIFI-AN: pedidos de licenças de sociedades carnavalescas entre 1900 e 1914.*
 
 **A ferramenta foi desenvolvida apenas para pesquisas acadêmicas, sem fins lucrativos.**
+**O banco não se propôs a esgotar as fontes do GIFI, nem mesmo da documentação referente aos pedidos de licença.**
 
 ## Índice
 - [Introdução](#introdução);
@@ -33,21 +34,28 @@ O Grupo de Identificação de Fundos Internos - GIFI -, segundo o [site do Arqui
 Esses pedidos de licença forneceram um conjunto rico de dados qualitativos e quantitativos para a pesquisa, contendo nomes, endereços, profissões, estatutos, além da movimentação e argumentação das forças policiais sobre a concessão ou não das licenças solicitadas.
 
 ## Banco de dados:
-O banco de dados foi inicialmente elaborada em Access e recentemente transformado em CSV para melhor visualização, pesquisa e compartilhamento.
+O banco de dados foi inicialmente elaborado em Access e recentemente transformado em CSV para melhor visualização, pesquisa e compartilhamento.
+
+Seu objetivo era formar uma conjunto de dados qualitativos e quantitativos sobre sociedades carnavalescas que depois seriam cruzadas e analisadas a partir de outros conjuntos de fontes (especialmente os periódicos e diários oficiais da União).
+
 O Banco de dados Sociedades Carnavalescas possui 1178 entradas, contendo as seguintes colunas: 
 - Código;
 - Nome da Sociedade;
 - Data (do pedido);
 - Endereço (da associação);
-- Licença (se é um pedido de licença);
-- Estatuto (se consta estatuto);
+- Licença (se é um pedido de licença); True/False
+- Estatuto (se consta estatuto); True/False
 - Notação-GIFI;
 - Tipo de licença;
 - Obs (comentários breves da época da pesquisa);
 - Presidente (se há registro);
-- Licença anterior (se há registro);
-- Nomes/Sujeitos (quando há referência aos membros ou diretoria);
-- Doc policial (se é um documento interno da polícia)
+- Licença anterior (se há registro); True/False
+- Nomes/Sujeitos (quando há referência aos membros ou diretoria); True/False
+- Doc policial (se é um documento interno da polícia); True/False
+
+**As colunas booleanas (True/False) indicam se a informação consta na fonte.**
+
+**As fontes estão todas fotografadas e em breve serão disponibilizadas para acesso.**
 
 ### Uso e funcionalidade:
 No site é possível pesquisar os termos desejados, escolher a quantidade de registros visíveis por páginas, ordenar por qualquer coluna e fazer download do arquivo CSV completo.
