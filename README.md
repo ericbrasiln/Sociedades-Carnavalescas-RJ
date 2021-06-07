@@ -1,7 +1,7 @@
 <p align="center"><img src="images/capa-SC.png" width="100%"/></p>
 
 
-[![DOI:10.13140/RG.2.2.31670.83521](https://zenodo.org/badge/DOI/10.13140/RG.2.2.31670.8352.svg)](http://dx.doi.org/10.13140/RG.2.2.31670.83521)
+[![DOI:10.13140/RG.2.2.31670.83521/1](https://zenodo.org/badge/DOI/10.13140/RG.2.2.31670.83521/1.svg)](http://dx.doi.org/10.13140/RG.2.2.31670.83521/1)
 
 Autor: __Eric Brasil__
 
@@ -79,7 +79,7 @@ O arquivo CSV com todas as informações do banco de dados foi convertido para h
 O código é livre e aberto para ser utilizado.
 
 ## Como citar?
-BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/>. Acesso em 07 de jun. 2021.
+BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/>. DOI: http://dx.doi.org/10.13140/RG.2.2.31670.83521/1 Acesso em 07 de jun. 2021.
 
 ```
 @misc{socidades-carnavalescas-RJ,
@@ -89,6 +89,7 @@ BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 190
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ}}
+  doi = {10.13140/RG.2.2.31670.83521/1}
   note = {Online; accessed 07 Jun 2021}
 }
 ```
