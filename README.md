@@ -74,11 +74,23 @@ O arquivo CSV com todas as informações do banco de dados foi convertido para h
 O código é livre e aberto para ser utilizado.
 
 ## Como citar?
-BRASIL, Eric. *Sociedades Carnavalescas, RJ, 1900-1914 - GIFI/AN: banco de dados*. 2020. Disponível em <https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/>. Acesso em 04 de jun. 2020.
+BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/>. Acesso em 07 de jun. 2021.
+
+```
+@misc{socidades-carnavalescas-RJ,
+  author = {Eric Brasil},
+  title = {Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN},
+  year = {2016},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ}}
+  note = {Online; accessed 07 Jun 2021}
+}
+```
 
 ## Contato, dúvidas e parcerias
 - [__Twitter__](twitter.com/ericbrasiln)
-- [__Instagram__](https://www.instagram.com/profericbrasil/)
+- [__Instagram__](https://www.instagram.com/ericbrasiln/)
 - __E-mail__: profericbrasil@unilab.edu.br
 
 ![card-bancoSC](images/card-bancoSC.png)
