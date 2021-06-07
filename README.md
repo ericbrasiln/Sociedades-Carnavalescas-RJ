@@ -1,5 +1,8 @@
 <p align="center"><img src="images/capa-SC.png" width="100%"/></p>
 
+
+[![DOI:10.13140/RG.2.2.31670.83521](https://zenodo.org/badge/DOI/10.13140/RG.2.2.31670.8352.svg)](http://dx.doi.org/10.13140/RG.2.2.31670.83521)
+
 Autor: __Eric Brasil__
 
  *Banco de dados produzido a partir da documentação do GIFI-AN: pedidos de licenças de sociedades carnavalescas entre 1900 e 1914.*
@@ -99,3 +102,4 @@ BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 190
 
 ## Licensa
 The MIT License (MIT)
+(c) Eric Brasil 2021
