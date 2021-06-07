@@ -62,6 +62,8 @@ No site é possível pesquisar os termos desejados, escolher a quantidade de reg
 
 __Atenção: como o arquivo é grande, pode demorar alguns segundos para carregar o banco de dados na tela. Por favor, aguarde.__
 
+Para baixar o csv diretamente [clique aqui](https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/data/Sociedades%20Carnavalescas%201900-1914%20GIFI-AN-v2.csv)
+
 ## Questões técnicas e História Digital:
 A utilização de linguagem de programação entre outras técnias e métodos digitais tem se tornado cada vez mais eficiente e imprescindível para as pesquisas em humanidades. 
 
