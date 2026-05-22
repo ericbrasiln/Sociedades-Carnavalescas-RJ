@@ -162,6 +162,23 @@
             "description": "Indica se há documentação policial anexa ao processo (1 = sim, 0 = não). 42 registros (3,6%) possuem documento policial.",
             "trueValues": ["1"],
             "falseValues": ["0"]
+          },
+          {
+            "name": "Tipo_licenca_categoria",
+            "type": "string",
+            "description": "Categoria principal do tipo de licença, mutuamente exclusiva. Vinte categorias possíveis: desfile_carnavalesco (479), licenca_anual (264), desfile_anual (133), estatutos_anual (115), vazio (63), passeata (56), estatutos_anual_desfile (15), desfile_ensaio (13), ensaio (9), estatutos (8), baile (5), mudanca_administrativa (5), ze_pereira (5), renovacao (2), carros_alegorias (2), criacao (1), outro (1), itinerario (1), escolta_policial (1), recurso (1). Derivada da coluna 'Tipo de licença' por classificação automática com overrides manuais para typos e ambiguidades.",
+            "constraints": {
+              "required": false,
+              "enum": ["desfile_carnavalesco", "licenca_anual", "desfile_anual", "estatutos_anual", "vazio", "passeata", "estatutos_anual_desfile", "desfile_ensaio", "ensaio", "estatutos", "baile", "mudanca_administrativa", "ze_pereira", "renovacao", "carros_alegorias", "criacao", "outro", "itinerario", "escolta_policial", "recurso"]
+            }
+          },
+          {
+            "name": "Tipo_licenca_componentes",
+            "type": "string",
+            "description": "Componentes semânticos do tipo de licença, separados por pipe (|). Permite múltiplos valores por registro, habilitando análise combinatória. Quatorze componentes possíveis: desfile_carnavalesco (641), licenca_anual (527), estatutos (138), passeata (75), ensaio (24), ze_pereira (19), mudanca_administrativa (9), carros_alegorias (8), baile (6), renovacao (5), criacao (1), itinerario (1), escolta_policial (1), recurso (1). 325 registros (27,6%) possuem mais de um componente. Campo vazio quando o tipo de licença original está em branco.",
+            "constraints": {
+              "required": false
+            }
           }
         ]
       }
