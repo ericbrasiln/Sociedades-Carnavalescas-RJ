@@ -720,6 +720,7 @@
     <div class="tabs">
       <button class="tab-btn active" data-tab="tabela">Tabela</button>
       <button class="tab-btn" data-tab="graficos">Visualizações</button>
+      <button class="tab-btn" data-tab="dicas">Dicas</button>
       <button class="tab-btn" data-tab="sobre">Sobre</button>
     </div>
 
@@ -766,6 +767,66 @@
         <p style="font-size:.82rem;color:var(--text-secondary);">A metodologia de normalização dos dados está documentada em <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/tree/refactor/site-moderno/scripts" target="_blank" rel="noopener">scripts/README.md</a> no repositório.</p>
       </div>
       <div class="charts-grid" id="charts-container"></div>
+    </div>
+
+    <!-- TIPS PANEL -->
+    <div class="panel" id="panel-dicas">
+      <div class="about">
+        <h2>Dicas de pesquisa</h2>
+
+        <h3>Busca avançada</h3>
+        <ul>
+          <li><strong>Busca por campo</strong> — use o seletor à esquerda da barra de busca para pesquisar apenas em Sociedade, Endereço, Assinatura, Tipo de licença, Categoria, Componentes, Notação-GIFI, Observações ou Data. A opção "Todos os campos" busca em todos.</li>
+          <li><strong>Operadores lógicos</strong> — ao adicionar mais de um termo, escolha como combiná-los:
+            <ul>
+              <li><strong>AND</strong> (padrão) — o registro deve conter <em>todos</em> os termos</li>
+              <li><strong>OR</strong> — o registro pode conter <em>qualquer</em> um dos termos</li>
+              <li><strong>NOT</strong> — o registro deve conter o termo anterior, mas <em>não</em> o termo seguinte</li>
+            </ul>
+          </li>
+          <li><strong>Termos múltiplos</strong> — clique em <em>Incluir</em> ou pressione Enter para adicionar cada termo como um chip. Remova individualmente com × ou limpe todos com <em>Limpar</em>.</li>
+          <li><strong>Busca fuzzy</strong> — a busca tolera variações de grafia e acentuação (ex.: "freitas" encontra "Freitas"; "ze pereira" encontra "zé pereira").</li>
+        </ul>
+
+        <h3>Exemplos de busca</h3>
+        <ul>
+          <li><strong>Sociedades carnavalescas de Oswaldo Cruz</strong> — campo: Endereço, termo: "oswaldo cruz"</li>
+          <li><strong>Pedidos recusados ou indeferidos</strong> — campo: Observações, termo: "indeferido" OR "recusado"</li>
+          <li><strong>Desfiles sem licença anual</strong> — faceta Categoria: desfile_carnavalesco, depois NOT licenca_anual na busca por tipo</li>
+          <li><strong>Sociedades com lista de membros</strong> — faceta Lista de membros: Com lista</li>
+          <li><strong>Todos os clubes</strong> — campo: Sociedade, termo: "clube"</li>
+          <li><strong>Zé-pereira e congêneres</strong> — campo: Componentes, termo: "ze_pereira"</li>
+        </ul>
+
+        <h3>Facetas e filtros</h3>
+        <ul>
+          <li>Use os botões de faceta para filtrar rapidamente: presença de <strong>licença</strong>, <strong>estatuto</strong>, <strong>lista de membros</strong>, <strong>documento policial</strong> ou <strong>categoria de licença</strong>.</li>
+          <li>Combinação de facetas com termos de busca é possível e recomendada para refinar resultados.</li>
+          <li>Os gráficos na aba <em>Visualizações</em> reagem automaticamente aos filtros e buscas ativos.</li>
+        </ul>
+
+        <h3>Gráficos interativos</h3>
+        <ul>
+          <li>Passe o mouse sobre qualquer gráfico para ver os valores exatos.</li>
+          <li>Os gráficos de <strong>Categoria de licença ao longo do tempo</strong> e <strong>Tipo de sociedade por ano (%)</strong> usam áreas/barras empilhadas — ideal para comparar proporções entre anos.</li>
+          <li>Quando há filtros ativos, os gráficos mostram <strong>(filtrado)</strong> no título e exibem apenas os dados filtrados.</li>
+        </ul>
+
+        <h3>Tabela e ficha detalhada</h3>
+        <ul>
+          <li>Clique em qualquer <strong>cabeçalho de coluna</strong> para ordenar crescente/decrescente.</li>
+          <li>Clique em qualquer <strong>linha</strong> para abrir a ficha detalhada com todos os campos do registro.</li>
+          <li>Datas são exibidas no formato brasileiro (DD/MM/AAAA), mas processadas como ISO 8601 internamente.</li>
+          <li>Colunas booleanas mostram ✓ (sim) ou ✗ (não).</li>
+        </ul>
+
+        <h3>Dados e download</h3>
+        <ul>
+          <li>O botão <strong>Baixar CSV</strong> exporta o CSV normalizado completo (datas ISO, booleanos 0/1, categorias controladas).</li>
+          <li>O <a href="data/datapackage.json" target="_blank" rel="noopener">datapackage.json</a> descreve a estrutura do dataset seguindo a especificação Frictionless Data.</li>
+          <li>O <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/tree/refactor/site-moderno/scripts" target="_blank" rel="noopener">pipeline de normalização</a> está documentado e versionado no repositório.</li>
+        </ul>
+      </div>
     </div>
 
     <!-- ABOUT PANEL -->
