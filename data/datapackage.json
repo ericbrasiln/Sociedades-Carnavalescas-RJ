@@ -27,7 +27,7 @@
     {
       "title": "Eric Brasil",
       "role": "author",
-      "email": "ericbrasiln@gmail.com",
+      "email": "profericbrasil@gmail.com",
       "orcid": "0000-0002-1834-0414"
     }
   ],
@@ -38,6 +38,8 @@
     "licença policial",
     "pós-abolição",
     "história social",
+    "história digital",
+    "humanidades digitais",
     "GIFI",
     "Arquivo Nacional"
   ],
@@ -72,7 +74,7 @@
           {
             "name": "Data",
             "type": "date",
-            "description": "Data do pedido de licença no formato ISO 8601 (AAAA-MM-DD). Quando o documento original continha apenas o ano, a data foi registrada como AAAA (ex.: '1909'). Quando continha mês e ano, como AAAA-MM (ex.: '1912-03'). Dois erros de digitação no original foram corrigidos: códigos 511 e 512 tinham '19012' em vez de '1912. A coluna 'Data_original' preserva o formato DD/MM/AAAA original para referência.",
+            "description": "Data do pedido de licença no formato ISO 8601 (AAAA-MM-DD). Quando o documento original continha apenas o ano, a data foi registrada como AAAA (ex.: '1909'). Quando continha mês e ano, como AAAA-MM (ex.: '1912-03'). Dois erros de digitação no original foram corrigidos: códigos 511 e 512 tinham '19012' em vez de '1912'. A coluna 'Data_original' preserva o formato DD/MM/AAAA original para referência.",
             "constraints": {
               "required": false
             }
