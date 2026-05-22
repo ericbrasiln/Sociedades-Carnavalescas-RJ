@@ -1430,16 +1430,19 @@
       'associacao': 'Associação', 'coligação': 'Coligação', 'coligacao': 'Coligação'
     };
     const tipoSocCounts = {};
+    const mainSocTypes = new Set(['Grupo','Sociedade','Clube','Grêmio','Congresso','Bloco','Rancho']);
     source.forEach(r => {
       const s = (r['Nome da Sociedade'] || '').trim();
       if (!s) return;
       const first = s.split(/\s+/)[0].toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // strip accents for matching
-      const firstOrig = s.split(/\s+/)[0].toLowerCase();
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       let label = 'Outros';
       for (const [key, val] of Object.entries(tipoSocMap)) {
         const keyNorm = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        if (first === keyNorm || first === key) { label = val; break; }
+        if (first === keyNorm || first === key) {
+          label = mainSocTypes.has(val) ? val : 'Outros';
+          break;
+        }
       }
       tipoSocCounts[label] = (tipoSocCounts[label] || 0) + 1;
     });
@@ -1464,7 +1467,7 @@
     });
 
     // --- 6. Tipo de sociedade por ano (proporção %, stacked bar) ---
-    const topSocTypes = tipoSocSorted.slice(0, 6).map(t => t[0]);
+    const topSocTypes = [...mainSocTypes];
     const yearSocCounts = {};
     const yearSocTotals = {};
     source.forEach(r => {
@@ -1476,18 +1479,20 @@
       let label = 'Outros';
       for (const [key, val] of Object.entries(tipoSocMap)) {
         const keyNorm = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        if (first === keyNorm || first === key) { label = val; break; }
+        if (first === keyNorm || first === key) {
+          label = mainSocTypes.has(val) ? val : 'Outros';
+          break;
+        }
       }
-      const cat = topSocTypes.includes(label) ? label : 'Outros';
       if (!yearSocCounts[y]) yearSocCounts[y] = {};
-      yearSocCounts[y][cat] = (yearSocCounts[y][cat] || 0) + 1;
+      yearSocCounts[y][label] = (yearSocCounts[y][label] || 0) + 1;
       yearSocTotals[y] = (yearSocTotals[y] || 0) + 1;
     });
     const socTimeYears = Object.keys(yearSocCounts).sort();
     const socColors = {
       'Grupo': '#3d2f1e', 'Sociedade': '#c4492a', 'Clube': '#d4a843',
       'Grêmio': '#4a8c5c', 'Congresso': '#7a5230', 'Bloco': '#b85c38',
-      'Outros': '#999'
+      'Rancho': '#e8c170', 'Outros': '#999'
     };
     const socTimeDatasets = topSocTypes.map(cat => ({
       label: cat,
@@ -1498,17 +1503,16 @@
       }),
       backgroundColor: socColors[cat] || '#888'
     }));
-    if (!topSocTypes.includes('Outros')) {
-      socTimeDatasets.push({
-        label: 'Outros',
-        data: socTimeYears.map(y => {
-          const raw = (yearSocCounts[y] && yearSocCounts[y]['Outros']) || 0;
-          const total = yearSocTotals[y] || 1;
-          return Math.round(raw / total * 1000) / 10;
-        }),
-        backgroundColor: '#999'
-      });
-    }
+    // Always add Outros
+    socTimeDatasets.push({
+      label: 'Outros',
+      data: socTimeYears.map(y => {
+        const raw = (yearSocCounts[y] && yearSocCounts[y]['Outros']) || 0;
+        const total = yearSocTotals[y] || 1;
+        return Math.round(raw / total * 1000) / 10;
+      }),
+      backgroundColor: '#999'
+    });
     chartInstances.socTempo = new Chart(document.getElementById('chart-soc-tempo'), {
       type: 'bar',
       data: {
