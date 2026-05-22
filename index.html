@@ -607,7 +607,6 @@
     'Nomes/Sujeitos': '',
     'Doc policial': ''
   };
-  let chartsRendered = false;
   let chartInstances = {};
 
   // LOAD DATA
@@ -643,6 +642,7 @@
 
       applyFilters();
       renderStats();
+      updateCharts();
       document.getElementById('table-loading').style.display = 'none';
       document.getElementById('table-wrap').style.display = 'block';
     } catch(e) {
@@ -708,6 +708,7 @@
     currentPage = 0;
     renderTable();
     updateResultCount();
+    updateCharts();
   }
 
   function updateResultCount() {
@@ -847,9 +848,8 @@
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-      if (btn.dataset.tab === 'graficos' && !chartsRendered) {
+      if (btn.dataset.tab === 'graficos') {
         renderCharts();
-        chartsRendered = true;
       }
     });
   });
@@ -889,18 +889,33 @@
   });
 
   // CHARTS
+  function updateCharts() {
+    // Only re-render if charts panel is visible
+    const panel = document.getElementById('panel-graficos');
+    if (panel.classList.contains('active')) {
+      renderCharts();
+    }
+  }
+
   function renderCharts() {
+    // Destroy existing chart instances to avoid canvas reuse errors
+    Object.values(chartInstances).forEach(c => c.destroy());
+    chartInstances = {};
+
+    const source = filtered.length > 0 ? filtered : DATA;
+    const isFiltered = filtered.length !== DATA.length;
+
     const container = document.getElementById('charts-container');
     container.innerHTML = `
-      <div class="chart-card"><h3>Registros por ano</h3><canvas id="chart-year"></canvas></div>
-      <div class="chart-card"><h3>Tipos de licença (top 10)</h3><canvas id="chart-tipo"></canvas></div>
-      <div class="chart-card"><h3>Presença de elementos nos registros</h3><canvas id="chart-bool"></canvas></div>
-      <div class="chart-card"><h3>Sociedades mais mencionadas</h3><canvas id="chart-top-soc"></canvas></div>
+      <div class="chart-card"><h3>Registros por ano${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-year"></canvas></div>
+      <div class="chart-card"><h3>Tipos de licença (top 10)${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-tipo"></canvas></div>
+      <div class="chart-card"><h3>Presença de elementos${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-bool"></canvas></div>
+      <div class="chart-card"><h3>Sociedades mais mencionadas${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-top-soc"></canvas></div>
     `;
 
     // Year distribution
     const yearCounts = {};
-    DATA.forEach(r => {
+    source.forEach(r => {
       const y = r._year;
       if (y) yearCounts[y] = (yearCounts[y] || 0) + 1;
     });
@@ -925,7 +940,7 @@
 
     // License types top 10
     const tipoCounts = {};
-    DATA.forEach(r => {
+    source.forEach(r => {
       const t = r['Tipo de licença'].trim();
       if (t) tipoCounts[t] = (tipoCounts[t] || 0) + 1;
     });
@@ -952,7 +967,7 @@
     const boolFields = ['Licença', 'Estatuto', 'Licença anterior', 'Nomes/Sujeitos', 'Doc policial'];
     const boolData = boolFields.map(f => ({
       label: f,
-      trueCount: DATA.filter(r => r[f] === 'True').length
+      trueCount: source.filter(r => r[f] === 'True').length
     }));
     chartInstances.bool = new Chart(document.getElementById('chart-bool'), {
       type: 'bar',
@@ -965,7 +980,7 @@
           borderRadius: 4
         }, {
           label: 'Ausente',
-          data: boolData.map(b => DATA.length - b.trueCount),
+          data: boolData.map(b => source.length - b.trueCount),
           backgroundColor: '#d4a843',
           borderRadius: 4
         }]
@@ -978,7 +993,7 @@
 
     // Top societies
     const socCounts = {};
-    DATA.forEach(r => {
+    source.forEach(r => {
       const s = r['Nome da Sociedade'].trim();
       if (s) socCounts[s] = (socCounts[s] || 0) + 1;
     });
