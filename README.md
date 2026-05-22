@@ -1,6 +1,6 @@
 <p align="center"><img src="images/capa-SC.png" width="100%"/></p>
 
-[![DOI:10.13140/RG.2.2.31670.83521/1](https://zenodo.org/badge/DOI/10.13140/RG.2.2.31670.83521/1.svg)](http://dx.doi.org/10.13140/RG.2.2.31670.83521/1)
+[![DOI](https://zenodo.org/badge/268927103.svg)](https://doi.org/10.5281/zenodo.20345409)
 
 **Eric Brasil**
 
@@ -113,7 +113,7 @@ Para o caso do banco de dados Sociedades Carnavalescas, utilizei Python para man
 
 ## Como citar
 
-BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasil.com.br/sociedades-carnavalescas/>. DOI: http://dx.doi.org/10.13140/RG.2.2.31670.83521/1
+BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasil.com.br/sociedades-carnavalescas/>. DOI: http://dx.doi.org/10.5281/zenodo.20345409
 
 ```bibtex
 @misc{sociedades-carnavalescas-RJ,
@@ -122,7 +122,7 @@ BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 190
   year = {2016},
   publisher = {GitHub},
   howpublished = {\url{https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ}},
-  doi = {10.13140/RG.2.2.31670.83521/1}
+  doi = {10.5281/zenodo.20345409}
 }
 ```
 
