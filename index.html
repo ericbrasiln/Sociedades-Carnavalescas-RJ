@@ -726,6 +726,7 @@
               <th data-key="Estatuto">Estatuto <span class="sort-arrow">▲</span></th>
               <th data-key="Notação-GIFI">Notação <span class="sort-arrow">▲</span></th>
               <th data-key="Presidente">Presidente <span class="sort-arrow">▲</span></th>
+              <th data-key="Obs">Obs <span class="sort-arrow">▲</span></th>
             </tr>
           </thead>
           <tbody id="table-body"></tbody>
@@ -1063,6 +1064,7 @@
         <td>${boolTag(r.Estatuto)}</td>
         <td>${highlightText(r['Notação-GIFI'], 'Notação-GIFI')}</td>
         <td>${highlightText(r.Presidente, 'Presidente')}</td>
+        <td>${highlightText(r.Obs, 'Obs')}</td>
       </tr>`;
     }).join('');
 
