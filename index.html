@@ -1246,16 +1246,18 @@
 
     const source = filtered.length > 0 ? filtered : DATA;
     const isFiltered = filtered.length !== DATA.length;
+    const filterTag = isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : '';
 
     const container = document.getElementById('charts-container');
     container.innerHTML = `
-      <div class="chart-card"><h3>Registros por ano${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-year"></canvas></div>
-      <div class="chart-card"><h3>Tipos de licença (top 10)${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-tipo"></canvas></div>
-      <div class="chart-card"><h3>Presença de elementos${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-bool"></canvas></div>
-      <div class="chart-card"><h3>Sociedades mais mencionadas${isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : ''}</h3><canvas id="chart-top-soc"></canvas></div>
+      <div class="chart-card"><h3>Registros por ano${filterTag}</h3><canvas id="chart-year"></canvas></div>
+      <div class="chart-card"><h3>Categoria de licença (total)${filterTag}</h3><canvas id="chart-tipo"></canvas></div>
+      <div class="chart-card"><h3>Categoria de licença ao longo do tempo${filterTag}</h3><canvas id="chart-tipo-tempo"></canvas></div>
+      <div class="chart-card"><h3>Presença de elementos${filterTag}</h3><canvas id="chart-bool"></canvas></div>
+      <div class="chart-card"><h3>Sociedades mais mencionadas${filterTag}</h3><canvas id="chart-top-soc"></canvas></div>
     `;
 
-    // Year distribution
+    // --- 1. Year distribution ---
     const yearCounts = {};
     source.forEach(r => {
       const y = r._year;
@@ -1280,13 +1282,20 @@
       }
     });
 
-    // License type categories
+    // --- 2. License type categories (total) ---
     const tipoCounts = {};
     source.forEach(r => {
       const t = r['Tipo_licenca_categoria'] || '';
       if (t && t !== 'vazio') tipoCounts[t] = (tipoCounts[t] || 0) + 1;
     });
     const tiposSorted = Object.entries(tipoCounts).sort((a,b) => b[1] - a[1]).slice(0, 15);
+
+    // Color palette for categories
+    const catColors = [
+      '#c4492a', '#d4a843', '#4a8c5c', '#3d2f1e', '#7a5230',
+      '#b85c38', '#e8c170', '#6b8f71', '#8b4513', '#2e4057',
+      '#a52a2a', '#daa520', '#556b2f', '#8fbc8f', '#cd853f'
+    ];
     const catLabelsChart = {
       'desfile_carnavalesco': 'Desfile carnavalesco',
       'licenca_anual': 'Licença anual',
@@ -1308,14 +1317,15 @@
       'recurso': 'Recurso',
       'outro': 'Outro'
     };
+
     chartInstances.tipo = new Chart(document.getElementById('chart-tipo'), {
-      type: 'horizontalBar',
+      type: 'bar',
       data: {
         labels: tiposSorted.map(t => catLabelsChart[t[0]] || t[0]),
         datasets: [{
           label: 'Registros',
           data: tiposSorted.map(t => t[1]),
-          backgroundColor: '#d4a843',
+          backgroundColor: tiposSorted.map((_, i) => catColors[i % catColors.length]),
           borderRadius: 4
         }]
       },
@@ -1326,7 +1336,62 @@
       }
     });
 
-    // Boolean fields
+    // --- 3. License type categories over time (stacked area) ---
+    // Get top 6 categories for readability
+    const topCats = tiposSorted.slice(0, 6).map(t => t[0]);
+    const yearCatCounts = {};
+    source.forEach(r => {
+      const y = r._year;
+      const t = r['Tipo_licenca_categoria'] || '';
+      if (!y || t === 'vazio') return;
+      if (!yearCatCounts[y]) yearCatCounts[y] = {};
+      const cat = topCats.includes(t) ? t : 'outros';
+      yearCatCounts[y][cat] = (yearCatCounts[y][cat] || 0) + 1;
+    });
+    const timeYears = Object.keys(yearCatCounts).sort();
+    const catDatasetColors = {
+      'desfile_carnavalesco': '#c4492a',
+      'licenca_anual': '#d4a843',
+      'desfile_anual': '#4a8c5c',
+      'estatutos_anual': '#3d2f1e',
+      'estatutos_anual_desfile': '#7a5230',
+      'desfile_ensaio': '#b85c38',
+      'outros': '#999'
+    };
+    const stackedDatasets = topCats.map(cat => ({
+      label: catLabelsChart[cat] || cat,
+      data: timeYears.map(y => (yearCatCounts[y] && yearCatCounts[y][cat]) || 0),
+      backgroundColor: catDatasetColors[cat] || '#888',
+      fill: true
+    }));
+    // Add "outros" aggregation
+    stackedDatasets.push({
+      label: 'Outros',
+      data: timeYears.map(y => (yearCatCounts[y] && yearCatCounts[y]['outros']) || 0),
+      backgroundColor: '#999',
+      fill: true
+    });
+
+    chartInstances.tipoTempo = new Chart(document.getElementById('chart-tipo-tempo'), {
+      type: 'line',
+      data: {
+        labels: timeYears,
+        datasets: stackedDatasets
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } }
+        },
+        scales: {
+          y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Registros' } },
+          x: { stacked: true }
+        }
+      }
+    });
+
+    // --- 4. Boolean fields ---
     const boolFields = ['Licença', 'Estatuto', 'Licença anterior', 'Nomes/Sujeitos', 'Doc policial'];
     const boolData = boolFields.map(f => ({
       label: f,
@@ -1354,7 +1419,7 @@
       }
     });
 
-    // Top societies
+    // --- 5. Top societies ---
     const socCounts = {};
     source.forEach(r => {
       const s = r['Nome da Sociedade'].trim();
@@ -1362,7 +1427,7 @@
     });
     const topSoc = Object.entries(socCounts).sort((a,b) => b[1] - a[1]).slice(0, 10);
     chartInstances.topSoc = new Chart(document.getElementById('chart-top-soc'), {
-      type: 'horizontalBar',
+      type: 'bar',
       data: {
         labels: topSoc.map(s => s[0].substring(0, 50)),
         datasets: [{

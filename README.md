@@ -15,11 +15,11 @@
 
 ## Funcionalidades
 
-- 🔍 **Busca fuzzy** — encontre termos mesmo com variações de grafia ou acentuação
-- 🏷️ **Facetas** — filtre rapidamente por presença de licença, estatuto, nomes/sujeitos ou documento policial
-- 📊 **Visualizações** — gráficos interativos de distribuição por ano, tipos de licença, presença de elementos e sociedades mais mencionadas
-- 📋 **Ficha detalhada** — clique em qualquer registro para ver todos os campos
-- 📥 **Download CSV** — arquivo original disponível para download
+- 🔍 **Busca avançada** — busca fuzzy com seletor de campo (Sociedade, Endereço, Presidente, etc.) e operadores lógicos (AND, OR, NOT); múltiplos termos acumuláveis
+- 🏷️ **Facetas** — filtre por presença de licença, estatuto, nomes/sujeitos, documento policial e categoria de tipo de licença
+- 📊 **Visualizações** — gráficos interativos: registros por ano, categorias de licença (total e ao longo do tempo), presença de elementos e sociedades mais mencionadas
+- 📋 **Ficha detalhada** — clique em qualquer registro para ver todos os campos, incluindo categoria e componentes normalizados
+- 📥 **Download CSV** — CSV normalizado (ISO 8601, booleanos 0/1, categorias controladas) disponível para download
 - 📱 **Responsivo** — funciona em desktop e celular
 
 ## Índice
