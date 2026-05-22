@@ -261,6 +261,23 @@
       background: var(--accent);
       color: var(--bg);
     }
+    .search-clear-btn {
+      padding: .6rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .search-clear-btn:hover {
+      background: #c4492a15;
+      border-color: #c4492a;
+      color: #c4492a;
+    }
     .search-terms {
       display: flex;
       flex-wrap: wrap;
@@ -633,7 +650,8 @@
           <option value="OR">Ou (OR)</option>
           <option value="NOT">Não (NOT)</option>
         </select>
-        <button id="search-add-btn" class="search-add-btn" title="Adicionar Termo de Busca">＋ Termo</button>
+        <button id="search-add-btn" class="search-add-btn" title="Adicionar termo de busca">Incluir</button>
+        <button id="search-clear-btn" class="search-clear-btn" title="Limpar todos os termos">Limpar</button>
       </div>
       <div id="search-terms" class="search-terms"></div>
       <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;">
@@ -1170,6 +1188,14 @@
     }
   });
   document.getElementById('search-add-btn').addEventListener('click', addSearchTerm);
+
+  // CLEAR ALL SEARCH TERMS
+  document.getElementById('search-clear-btn').addEventListener('click', () => {
+    searchTerms = [];
+    document.getElementById('search-input').value = '';
+    renderSearchTerms();
+    applyFilters();
+  });
 
   // Also support live filtering as you type (adds as pending term)
   document.getElementById('search-input').addEventListener('input', () => {
