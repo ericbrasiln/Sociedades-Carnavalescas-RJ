@@ -502,6 +502,23 @@
       font-size: .9rem;
       margin-bottom: .75rem;
     }
+    .about h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-top: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    .about ul {
+      padding-left: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    .about li {
+      color: var(--text-secondary);
+      font-size: .9rem;
+      line-height: 1.6;
+      margin-bottom: .35rem;
+    }
     .about a { color: var(--accent); }
     .cite-box {
       background: var(--bg);
@@ -836,8 +853,8 @@
         <p>Este banco de dados foi produzido a partir da documentação do <strong>Grupo de Identificação de Fundos Internos (GIFI)</strong> do <strong>Arquivo Nacional</strong>, durante a pesquisa de doutorado de Eric Brasil (UFF, 2012–2016). A tese, intitulada <em>Carnavais Atlânticos: cidadania e cultura negra no pós-abolição. Rio de Janeiro e Port-of-Spain, Trinidad (1838–1920)</em>, analisou transnacionalmente experiências de mobilização negra através dos carnavais.</p>
         <p>O banco reúne 1.178 registros de pedidos de licença de sociedades carnavalescas, contendo nomes, endereços, profissões, estatutos, além da movimentação e argumentação das forças policiais sobre a concessão ou não das licenças.</p>
         <p>A publicização desse banco visa tornar acessível a qualquer pessoa parte dos dados produzidos na pesquisa, como recurso para pesquisas em história social da cultura da cidade do Rio de Janeiro no início do século XX.</p>
-        <h2 style="margin-top:1.25rem;">Colunas do dataset</h2>
-        <ul style="font-size:.85rem; color:var(--text-secondary); line-height:1.8; padding-left:1.25rem;">
+        <h2 style="margin-top:1.75rem;">Colunas do dataset</h2>
+        <ul>
           <li><strong>Código</strong> — identificador numérico do registro</li>
           <li><strong>Nome da Sociedade</strong> — nome da entidade carnavalesca</li>
           <li><strong>Data</strong> — data do pedido de licença (formato ISO 8601: AAAA-MM-DD)</li>
@@ -855,10 +872,10 @@
           <li><strong>Nomes/Sujeitos</strong> — se há lista de membros ou diretoria (1=sim, 0=não)</li>
           <li><strong>Doc policial</strong> — se é documento interno da polícia (1=sim, 0=não)</li>
         </ul>
-        <h2 style="margin-top:1.25rem;">Como citar</h2>
+        <h2 style="margin-top:1.75rem;">Como citar</h2>
         <div class="cite-box">BRASIL, Eric. <em>Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 — GIFI/AN</em>. 2016. Disponível em &lt;https://ericbrasil.com.br/sociedades-carnavalescas/&gt;. DOI: http://dx.doi.org/10.13140/RG.2.2.31670.83521/1</div>
 
-        <h2 style="margin-top:1.25rem;">BibTeX</h2>
+        <h2 style="margin-top:1.75rem;">BibTeX</h2>
         <div class="cite-box">@misc{sociedades-carnavalescas-RJ,<br>
 &nbsp;&nbsp;author = {Eric Brasil},<br>
 &nbsp;&nbsp;title = {Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 — GIFI/AN},<br>
@@ -868,28 +885,28 @@
 &nbsp;&nbsp;doi = {10.13140/RG.2.2.31670.83521/1}<br>
 }</div>
 
-        <h2 style="margin-top:1.25rem;">Princípios FAIR</h2>
+        <h2 style="margin-top:1.75rem;">Princípios FAIR</h2>
         <p>Este dataset segue os <a href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">princípios FAIR</a> (Findable, Accessible, Interoperable, Reusable):</p>
-        <ul style="font-size:.85rem; color:var(--text-secondary); line-height:1.8; padding-left:1.25rem;">
+        <ul>
           <li><strong>Findable</strong> — DOI persistente (Zenodo), URL estável (GitHub Pages), metadados em <code>datapackage.json</code> (Frictionless Data), Dublin Core e Schema.org no HTML, keywords indexáveis</li>
           <li><strong>Accessible</strong> — CSV aberto via HTTPS, sem autenticação, repositório público no GitHub, dados originais preservados junto à versão normalizada</li>
           <li><strong>Interoperable</strong> — formato CSV (<code>text/csv</code>), datas ISO 8601, booleanos 0/1, vocabulário controlado com enum (<code>Tipo_licenca_categoria</code>, 20 categorias), componentes semânticos separados por <code>|</code>, pipeline de normalização versionado em <code>scripts/</code></li>
           <li><strong>Reusable</strong> — CC BY 4.0 (dados) e MIT (código), atribuição com DOI da tese e ORCID, procedência do Arquivo Nacional/GIFI documentada, seção "Como citar" com BibTeX, reprodutibilidade garantida por 3 scripts idempotentes com <code>scripts/README.md</code></li>
         </ul>
 
-        <h2 style="margin-top:1.25rem;">Procedência</h2>
+        <h2 style="margin-top:1.75rem;">Procedência</h2>
         <p>Os dados provêm do <strong>fundo GIFI</strong> (Grupo de Identificação de Fundos Internos) do <strong>Arquivo Nacional (Brasil)</strong>, série 6C — documentação da polícia e repartições do Ministério da Justiça. O GIFI foi formado em 1981 para identificar o acervo da antiga Seção do Poder Executivo que não havia recebido tratamento técnico. O fundo abrange documentos de 1808 a 1966, provenientes de múltiplos ministérios e órgãos, incluindo polícia, alfândega, estradas de ferro e tribunais.</p>
         <p>A notação arquivística (coluna <em>Notação-GIFI</em>) segue o código <code>6cXXX</code> e permite localizar os documentos físicos no arquivo. Os 1.178 registros aqui publicados referem-se especificamente aos pedidos de licença de sociedades carnavalescas (1900–1914).</p>
         <p><strong>Referência arquivística:</strong> Arquivo Nacional (Brasil). <em>Diversos GIFI — Caixas e Códices</em>. Código de referência: OI. Período: 1808–1966. Unidade custodiadora: Coordenação de Documentos Escritos (CODES). <a href="https://dibrarq.arquivonacional.gov.br/index.php/diversos-gifi-caixas-e-codices" target="_blank" rel="noopener">Ver no DiBArq</a></p>
         <p><strong>Fonte bibliográfica:</strong> BRASIL, Eric. <em>Carnavais Atlânticos: cidadania e cultura negra no pós-abolição. Rio de Janeiro e Port-of-Spain, Trinidad (1838–1920)</em>. Tese (Doutorado em História Social) — Universidade Federal Fluminense, 2016.</p>
 
-        <h2 style="margin-top:1.25rem;">Dicionário de dados</h2>
+        <h2 style="margin-top:1.75rem;">Dicionário de dados</h2>
         <p>Um <a href="data/datapackage.json" target="_blank">Data Package (JSON)</a> descreve a estrutura completa do dataset — tipos de dados, descrições de cada coluna, valores ausentes, restrições e metadados de procedência — seguindo a especificação <a href="https://frictionlessdata.io/specs/data-package/" target="_blank" rel="noopener">Frictionless Data</a>.</p>
 
-        <h2 style="margin-top:1.25rem;">Download</h2>
+        <h2 style="margin-top:1.75rem;">Download</h2>
         <p>Baixe o <a href="data/sociedades-carnavalescas-normalizado.csv" download>CSV normalizado</a> com todos os 1.178 registros (datas ISO 8601, booleanos 1/0). Também disponível o <a href="data/Sociedades Carnavalescas 1900-1914 GIFI-AN.csv" download>CSV original</a> com formato preservado.</p>
 
-        <h2 style="margin-top:1.25rem;">Licença</h2>
+        <h2 style="margin-top:1.75rem;">Licença</h2>
         <p><strong>Dados:</strong> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)</a> — livre uso, distribuição e adaptação, com atribuição. <strong>Código-fonte</strong> do site: MIT License — Eric Brasil, 2021.</p>
       </div>
     </div>
