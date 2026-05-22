@@ -160,6 +160,25 @@
       font-size: 1.2rem;
       color: var(--text-secondary);
     }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: .55rem 1rem;
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface);
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+    .download-btn:hover {
+      background: var(--gold);
+      color: #fff;
+    }
     .result-count {
       font-size: .85rem;
       color: var(--text-secondary);
@@ -468,6 +487,7 @@
         <div class="search-input-wrap">
           <input type="text" id="search-input" placeholder="Buscar por nome, endereço, presidente, notação…" autocomplete="off">
         </div>
+        <a href="data/sociedades-carnavalescas.csv" download class="download-btn" title="Baixar CSV completo">⬇ CSV</a>
         <span class="result-count" id="result-count"></span>
       </div>
       <div class="facets">
@@ -568,6 +588,9 @@
 &nbsp;&nbsp;howpublished = {\\url{https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/}},<br>
 &nbsp;&nbsp;doi = {10.13140/RG.2.2.31670.83521/1}<br>
 }</div>
+
+        <h2 style="margin-top:1.25rem;">Download</h2>
+        <p>Baixe o <a href="data/sociedades-carnavalescas.csv" download>CSV completo</a> com todos os 1.178 registros.</p>
 
         <h2 style="margin-top:1.25rem;">Licença</h2>
         <p>MIT License — Eric Brasil, 2021. O código é livre e aberto. Os dados são disponibilizados para pesquisa acadêmica, sem fins lucrativos.</p>
