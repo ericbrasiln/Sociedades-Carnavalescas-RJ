@@ -1254,7 +1254,7 @@
       <div class="chart-card"><h3>Categoria de licença (total)${filterTag}</h3><canvas id="chart-tipo"></canvas></div>
       <div class="chart-card"><h3>Categoria de licença ao longo do tempo${filterTag}</h3><canvas id="chart-tipo-tempo"></canvas></div>
       <div class="chart-card"><h3>Presença de elementos${filterTag}</h3><canvas id="chart-bool"></canvas></div>
-      <div class="chart-card"><h3>Sociedades mais mencionadas${filterTag}</h3><canvas id="chart-top-soc"></canvas></div>
+      <div class="chart-card"><h3>Tipo de sociedade${filterTag}</h3><canvas id="chart-top-soc"></canvas></div>
     `;
 
     // --- 1. Year distribution ---
@@ -1419,21 +1419,39 @@
       }
     });
 
-    // --- 5. Top societies ---
-    const socCounts = {};
+    // --- 5. Tipo de sociedade (from first term of name) ---
+    const tipoSocMap = {
+      'grupo': 'Grupo', 'sociedade': 'Sociedade', 'clube': 'Clube',
+      'grêmio': 'Grêmio', 'gremio': 'Grêmio', 'congresso': 'Congresso',
+      'bloco': 'Bloco', 'bando': 'Bando', 'cordão': 'Cordão', 'cordao': 'Cordão',
+      'centro': 'Centro', 'estudantina': 'Estudantina', 'liga': 'Liga',
+      'rancho': 'Rancho', 'zé-pereira': 'Zé-Pereira', 'associação': 'Associação',
+      'associacao': 'Associação', 'coligação': 'Coligação', 'coligacao': 'Coligação'
+    };
+    const tipoSocCounts = {};
     source.forEach(r => {
-      const s = r['Nome da Sociedade'].trim();
-      if (s) socCounts[s] = (socCounts[s] || 0) + 1;
+      const s = (r['Nome da Sociedade'] || '').trim();
+      if (!s) return;
+      const first = s.split(/\s+/)[0].toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // strip accents for matching
+      const firstOrig = s.split(/\s+/)[0].toLowerCase();
+      let label = 'Outro';
+      for (const [key, val] of Object.entries(tipoSocMap)) {
+        const keyNorm = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (first === keyNorm || first === key) { label = val; break; }
+      }
+      tipoSocCounts[label] = (tipoSocCounts[label] || 0) + 1;
     });
-    const topSoc = Object.entries(socCounts).sort((a,b) => b[1] - a[1]).slice(0, 10);
+    const tipoSocSorted = Object.entries(tipoSocCounts).sort((a,b) => b[1] - a[1]);
+    const tipoSocColors = ['#3d2f1e','#c4492a','#d4a843','#4a8c5c','#7a5230','#b85c38','#e8c170','#6b8f71','#8b4513','#2e4057','#a52a2a','#556b2f','#999'];
     chartInstances.topSoc = new Chart(document.getElementById('chart-top-soc'), {
       type: 'bar',
       data: {
-        labels: topSoc.map(s => s[0].substring(0, 50)),
+        labels: tipoSocSorted.map(t => t[0]),
         datasets: [{
           label: 'Registros',
-          data: topSoc.map(s => s[1]),
-          backgroundColor: '#3d2f1e',
+          data: tipoSocSorted.map(t => t[1]),
+          backgroundColor: tipoSocSorted.map((_, i) => tipoSocColors[i % tipoSocColors.length]),
           borderRadius: 4
         }]
       },
