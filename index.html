@@ -440,9 +440,20 @@
     .highlight { background: var(--gold-light); padding: 0 2px; border-radius: 2px; }
 
     /* CHARTS */
+    .charts-intro {
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+    .charts-intro p { margin-bottom: .5rem; }
+    .charts-intro ul { padding-left: 1.25rem; margin: .5rem 0; }
+    .charts-intro li { margin-bottom: .25rem; }
+    .charts-intro strong { color: var(--text); }
     .charts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
     }
     .chart-card {
@@ -725,6 +736,18 @@
 
     <!-- CHARTS PANEL -->
     <div class="panel" id="panel-graficos">
+      <div class="charts-intro">
+        <p>Os gráficos abaixo apresentam distribuições do conjunto de dados e reagem automaticamente aos filtros e termos de busca aplicados. Quando há filtros ativos, os gráficos exibem <strong>(filtrado)</strong> no título.</p>
+        <ul>
+          <li><strong>Registros por ano</strong> — quantidade de pedidos de licença por ano.</li>
+          <li><strong>Categoria de licença (total)</strong> — frequência absoluta das categorias normalizadas de tipo de licença.</li>
+          <li><strong>Categoria de licença ao longo do tempo</strong> — evolução temporal das categorias (top 6 + "Outros") como áreas empilhadas.</li>
+          <li><strong>Presença de elementos</strong> — quantos registros contêm licença, estatuto, licença anterior, nomes/sujeitos ou documento policial.</li>
+          <li><strong>Tipo de sociedade</strong> — classificação pelo primeiro termo do nome (Grupo, Sociedade, Clube etc.); tipos com menos de 8 ocorrências são agrupados em "Outros".</li>
+          <li><strong>Tipo de sociedade por ano (%)</strong> — proporção relativa de cada tipo de sociedade em cada ano (barras empilhadas a 100%).</li>
+        </ul>
+        <p style="font-size:.82rem;color:var(--text-secondary);">A metodologia de normalização dos dados está documentada em <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/tree/refactor/site-moderno/scripts" target="_blank" rel="noopener">scripts/README.md</a> no repositório.</p>
+      </div>
       <div class="charts-grid" id="charts-container"></div>
     </div>
 
