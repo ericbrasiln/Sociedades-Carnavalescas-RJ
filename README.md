@@ -58,19 +58,22 @@ O Banco de dados Sociedades Carnavalescas possui 1178 entradas, contendo as segu
 
 - **Código** — identificador numérico do registro
 - **Nome da Sociedade** — nome da entidade carnavalesca
-- **Data** — data do pedido de licença
+- **Data** — data do pedido de licença (formato ISO 8601: AAAA-MM-DD)
+- **Data_original** — data no formato original do arquivo (DD/MM/AAAA)
 - **Endereço** — endereço da associação
-- **Licença** — se contém pedido de licença (True/False)
-- **Estatuto** — se contém estatuto (True/False)
+- **Licença** — se contém pedido de licença (1=sim, 0=não)
+- **Estatuto** — se contém estatuto (1=sim, 0=não)
 - **Notação-GIFI** — referência arquivística
-- **Tipo de licença** — descrição do tipo de licença solicitada
+- **Tipo de licença** — descrição original do tipo de licença solicitada (texto livre, 152 valores únicos)
+- **Tipo_licenca_categoria** — categoria normalizada do tipo de licença, mutuamente exclusiva (20 categorias controladas)
+- **Tipo_licenca_componentes** — componentes semânticos do tipo de licença, separados por `|` (14 componentes; 27,6% dos registros têm mais de um)
 - **Obs** — comentários breves da época da pesquisa
 - **Presidente** — nome do presidente, quando registrado
-- **Licença anterior** — se há registro de licença anterior (True/False)
-- **Nomes/Sujeitos** — se há referência aos membros ou diretoria (True/False)
-- **Doc policial** — se é um documento interno da polícia (True/False)
+- **Licença anterior** — se há registro de licença anterior (1=sim, 0=não)
+- **Nomes/Sujeitos** — se há referência aos membros ou diretoria (1=sim, 0=não)
+- **Doc policial** — se é um documento interno da polícia (1=sim, 0=não)
 
-**As colunas booleanas (True/False) indicam se a informação consta na fonte.**
+**As colunas booleanas (1/0) indicam se a informação consta na fonte.** Veja `scripts/README.md` para detalhes sobre a normalização.
 
 ## Questões técnicas e História Digital
 
