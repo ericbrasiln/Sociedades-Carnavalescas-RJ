@@ -68,7 +68,7 @@ O Banco de dados Sociedades Carnavalescas possui 1178 entradas, contendo as segu
 - **Tipo_licenca_categoria** — categoria normalizada do tipo de licença, mutuamente exclusiva (20 categorias controladas)
 - **Tipo_licenca_componentes** — componentes semânticos do tipo de licença, separados por `|` (14 componentes; 27,6% dos registros têm mais de um)
 - **Obs** — comentários breves da época da pesquisa
-- **Presidente** — nome do presidente, quando registrado
+- **Presidente** — signatário do pedido (presidente, secretário, vice, tesoureiro etc.)
 - **Licença anterior** — se há registro de licença anterior (1=sim, 0=não)
 - **Nomes/Sujeitos** — se há referência aos membros ou diretoria (1=sim, 0=não)
 - **Doc policial** — se é um documento interno da polícia (1=sim, 0=não)

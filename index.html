@@ -634,7 +634,7 @@
       <div class="stat-card"><div class="stat-num" id="stat-total">–</div><div class="stat-label">Registros</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-sociedades">–</div><div class="stat-label">Sociedades</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-licencas">–</div><div class="stat-label">Com licença</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-presidentes">–</div><div class="stat-label">Com presidente</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-presidentes">–</div><div class="stat-label">Com assinatura</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-periodo">–</div><div class="stat-label">Período</div></div>
     </div>
 
@@ -648,7 +648,7 @@
           <option value="">Todos os campos</option>
           <option value="Nome da Sociedade">Sociedade</option>
           <option value="Endereço">Endereço</option>
-          <option value="Presidente">Presidente</option>
+          <option value="Presidente">Assinatura</option>
           <option value="Tipo de licença">Tipo de licença</option>
           <option value="Tipo_licenca_categoria">Categoria (normalizada)</option>
           <option value="Tipo_licenca_componentes">Componentes</option>
@@ -725,7 +725,7 @@
               <th data-key="Licença">Licença <span class="sort-arrow">▲</span></th>
               <th data-key="Estatuto">Estatuto <span class="sort-arrow">▲</span></th>
               <th data-key="Notação-GIFI">Notação <span class="sort-arrow">▲</span></th>
-              <th data-key="Presidente">Presidente <span class="sort-arrow">▲</span></th>
+              <th data-key="Presidente">Assinatura <span class="sort-arrow">▲</span></th>
               <th data-key="Obs">Obs <span class="sort-arrow">▲</span></th>
             </tr>
           </thead>
@@ -773,7 +773,7 @@
           <li><strong>Tipo_licenca_categoria</strong> — categoria normalizada do tipo de licença, mutuamente exclusiva (20 categorias: desfile_carnavalesco, licenca_anual, desfile_anual, etc.)</li>
           <li><strong>Tipo_licenca_componentes</strong> — componentes semânticos do tipo de licença, separados por pipe | (14 componentes possíveis; 27,6% dos registros têm mais de um)</li>
           <li><strong>Obs</strong> — observações da pesquisa</li>
-          <li><strong>Presidente</strong> — nome do presidente, quando registrado</li>
+          <li><strong>Presidente</strong> — signatário do pedido (presidente, secretário, vice, tesoureiro etc.)</li>
           <li><strong>Licença anterior</strong> — se há registro de licença anterior (1=sim, 0=não)</li>
           <li><strong>Nomes/Sujeitos</strong> — se há referência a membros ou diretoria (1=sim, 0=não)</li>
           <li><strong>Doc policial</strong> — se é documento interno da polícia (1=sim, 0=não)</li>
@@ -1106,7 +1106,7 @@
       ['Categoria', formatCategoriaModal(r['Tipo_licenca_categoria'])],
       ['Componentes', formatComponentes(r['Tipo_licenca_componentes'])],
       ['Observações', r.Obs],
-      ['Presidente', r.Presidente],
+      ['Assinatura', r.Presidente],
       ['Licença anterior', boolLabel(r['Licença anterior'])],
       ['Nomes/Sujeitos', boolLabel(r['Nomes/Sujeitos'])],
       ['Documento policial', boolLabel(r['Doc policial'])],
@@ -1149,7 +1149,7 @@
     '': 'Todos os campos',
     'Nome da Sociedade': 'Sociedade',
     'Endereço': 'Endereço',
-    'Presidente': 'Presidente',
+    'Presidente': 'Assinatura',
     'Tipo de licença': 'Tipo de licença',
     'Tipo_licenca_categoria': 'Categoria',
     'Tipo_licenca_componentes': 'Componentes',
