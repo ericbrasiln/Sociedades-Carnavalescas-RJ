@@ -11,7 +11,7 @@
 
 ## Acesso
 
-👉 **[sociedades-carnavalescas.ericbrasiln.github.io](https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/)**
+👉 **[sociedades-carnavalescas.ericbrasil.com.br](https://ericbrasil.com.br/sociedades-carnavalescas/)**
 
 ## Funcionalidades
 
@@ -113,7 +113,7 @@ Para o caso do banco de dados Sociedades Carnavalescas, utilizei Python para man
 
 ## Como citar
 
-BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasiln.github.io/Sociedades-Carnavalescas-RJ/>. DOI: http://dx.doi.org/10.13140/RG.2.2.31670.83521/1
+BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 - GIFI/AN*. 2016. Disponível em <https://ericbrasil.com.br/sociedades-carnavalescas/>. DOI: http://dx.doi.org/10.13140/RG.2.2.31670.83521/1
 
 ```bibtex
 @misc{sociedades-carnavalescas-RJ,
