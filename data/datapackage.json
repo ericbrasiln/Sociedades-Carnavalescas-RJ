@@ -1,0 +1,200 @@
+{
+  "$schema": "https://frictionlessdata.io/specs/data-package.json",
+  "name": "sociedades-carnavalescas-rj-1900-1914",
+  "title": "Sociedades Carnavalescas do Rio de Janeiro — Pedidos de Licença (1900-1914)",
+  "description": "Base de dados com 1.178 pedidos de licença de sociedades carnavalescas arquivados no Arquivo Nacional (Brasil), fundo GIFI (Grupo de Identificação de Fundos Internos), série 6C. Os dados foram coletados e tratados no âmbito da tese de doutorado \"Carnavais Atlânticos: Cidadania e Cultura Negra no Pós-Abolição. Rio de Janeiro e Port-of-Spain, Trinidad (1838-1920)\" (UFF, 2016), de Eric Brasil.",
+  "homepage": "https://ericbrasil.com.br/sociedades-carnavalescas/",
+  "created": "2016-01-01",
+  "published": "2025-05-22",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Arquivo Nacional (Brasil) — Diversos GIFI - Caixas e Códices",
+      "path": "https://dibrarq.arquivonacional.gov.br/index.php/diversos-gifi-caixas-e-codices",
+      "accessLevel": "public"
+    },
+    {
+      "title": "Brasil, Eric. Carnavais Atlânticos: Cidadania e Cultura Negra no Pós-Abolição. Rio de Janeiro e Port-of-Spain, Trinidad (1838-1920). Tese (Doutorado em História Social) — Universidade Federal Fluminense, 2016."
+    }
+  ],
+  "contributors": [
+    {
+      "title": "Eric Brasil",
+      "role": "author",
+      "email": "profericbrasil@gmail.com",
+      "orcid": "0000-0002-1834-0414"
+    }
+  ],
+  "keywords": [
+    "carnaval",
+    "Rio de Janeiro",
+    "sociedades carnavalescas",
+    "licença policial",
+    "pós-abolição",
+    "história social",
+    "história digital",
+    "humanidades digitais",
+    "GIFI",
+    "Arquivo Nacional"
+  ],
+  "resources": [
+    {
+      "name": "sociedades-carnavalescas-normalizado",
+      "path": "sociedades-carnavalescas-normalizado.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {
+        "delimiter": ",",
+        "quoteChar": "\"",
+        "header": true
+      },
+      "schema": {
+        "missingValues": [""],
+        "fields": [
+          {
+            "name": "Código",
+            "type": "integer",
+            "description": "Identificador sequencial do pedido de licença no banco de dados. Chave primária. Numerado de 0 a 1177."
+          },
+          {
+            "name": "Nome da Sociedade",
+            "type": "string",
+            "description": "Nome completo da sociedade carnavalesca conforme transcrito do documento original. Grafia original preservada (ex.: 'lyrica' em vez de 'lírica', 'Gremio' em vez de 'Grêmio'). 943 nomes únicos; sociedades que pediram licença em mais de um ano aparecem com o mesmo nome em linhas diferentes.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "Data",
+            "type": "date",
+            "description": "Data do pedido de licença no formato ISO 8601 (AAAA-MM-DD). Quando o documento original continha apenas o ano, a data foi registrada como AAAA (ex.: '1909'). Quando continha mês e ano, como AAAA-MM (ex.: '1912-03'). Dois erros de digitação no original foram corrigidos: códigos 511 e 512 tinham '19012' em vez de '1912'. A coluna 'Data_original' preserva o formato DD/MM/AAAA original para referência.",
+            "constraints": {
+              "required": false
+            }
+          },
+          {
+            "name": "Data_original",
+            "type": "string",
+            "description": "Data do pedido de licença no formato original como transcrito do documento (DD/MM/AAAA). Preservada para rastreabilidade e busca em texto livre. Alguns valores contêm apenas ano ou mês/ano.",
+            "constraints": {
+              "required": false
+            }
+          },
+          {
+            "name": "Endereço",
+            "type": "string",
+            "description": "Endereço da sede da sociedade carnavalesca conforme transcrito do documento. Inclui rua, número e bairro quando disponível. Grafia original preservada (ex.: 'São Christóvão', 'n.' em vez de 'nº'). 87 registros sem endereço.",
+            "constraints": {
+              "required": false
+            }
+          },
+          {
+            "name": "Licença",
+            "type": "boolean",
+            "description": "Indica se a sociedade obteve licença para funcionar (1 = sim, 0 = não). Dos 1.178 registros, 971 (82,4%) tiveram licença concedida e 207 (17,6%) não.",
+            "trueValues": ["1"],
+            "falseValues": ["0"]
+          },
+          {
+            "name": "Estatuto",
+            "type": "boolean",
+            "description": "Indica se o pedido incluía aprovação de estatutos (1 = sim, 0 = não). 146 registros (12,4%) incluíam aprovação de estatutos.",
+            "trueValues": ["1"],
+            "falseValues": ["0"]
+          },
+          {
+            "name": "Notação-GIFI",
+            "type": "string",
+            "description": "Código de classificação arquivística no sistema GIFI do Arquivo Nacional. O formato é '6cXXX', onde '6c' indica a série e os números referem-se à caixa/código específica. 16 códigos distintos, sendo os mais frequentes: 6c171 (172), 6c408 (168), 6c170 (166), 6c367 (129), 6c432 (122). Permite localizar o documento físico no arquivo.",
+            "constraints": {
+              "required": false,
+              "pattern": "6c\\d+"
+            }
+          },
+          {
+            "name": "Tipo de licença",
+            "type": "string",
+            "description": "Descrição do tipo de licença solicitada, conforme transcrito do documento. Campo de texto livre com 152 valores únicos. As categorias mais frequentes são: 'sair no carnaval' (376), 'licença anual' (195), 'licença anual e sair no carnaval' (118), 'aprovação de estatutos e licença anual' (78). Inclui variações ortográficas e de formulação do período (ex.: 'passseata', 'arovação').",
+            "constraints": {
+              "required": false
+            }
+          },
+          {
+            "name": "Obs",
+            "type": "string",
+            "description": "Observações registradas pelo pesquisador durante a coleta. Inclui informações sobre composição social dos membros (ex.: 'operários', 'sócios e moradias'), status do pedido (ex.: 'indeferido'), referências a imagens digitalizadas (ex.: 'ver img 4178'), e notas sobre conteúdo anexo (ex.: 'croquis', 'itinerário', 'diretoria'). 353 registros com observações (30%).",
+            "constraints": {
+              "required": false
+            }
+          },
+          {
+            "name": "Presidente",
+            "type": "string",
+            "description": "Nome do presidente da sociedade carnavalesca conforme transcrito do documento. Grafia original em minúsculas (ex.: 'manoel joaquim de brito'). Nomes entre colchetes com interrogação indicam leitura incerta (ex.: 'alfredo luiz tuller [?]'). 475 registros com presidente identificado (40,3%).",
+            "constraints": {
+              "required": false
+            }
+          },
+          {
+            "name": "Licença anterior",
+            "type": "boolean",
+            "description": "Indica se há referência a uma licença anterior da mesma sociedade (1 = sim, 0 = não). 376 registros (31,9%) mencionam licença anterior.",
+            "trueValues": ["1"],
+            "falseValues": ["0"]
+          },
+          {
+            "name": "Nomes/Sujeitos",
+            "type": "boolean",
+            "description": "Indica se o documento contém lista de nomes/sujeitos associados à sociedade (1 = sim, 0 = não). 109 registros (9,3%) incluem nomes além do presidente.",
+            "trueValues": ["1"],
+            "falseValues": ["0"]
+          },
+          {
+            "name": "Doc policial",
+            "type": "boolean",
+            "description": "Indica se há documentação policial anexa ao processo (1 = sim, 0 = não). 42 registros (3,6%) possuem documento policial.",
+            "trueValues": ["1"],
+            "falseValues": ["0"]
+          },
+          {
+            "name": "Tipo_licenca_categoria",
+            "type": "string",
+            "description": "Categoria principal do tipo de licença, mutuamente exclusiva. Vinte categorias possíveis: desfile_carnavalesco (479), licenca_anual (264), desfile_anual (133), estatutos_anual (115), vazio (63), passeata (56), estatutos_anual_desfile (15), desfile_ensaio (13), ensaio (9), estatutos (8), baile (5), mudanca_administrativa (5), ze_pereira (5), renovacao (2), carros_alegorias (2), criacao (1), outro (1), itinerario (1), escolta_policial (1), recurso (1). Derivada da coluna 'Tipo de licença' por classificação automática com overrides manuais para typos e ambiguidades.",
+            "constraints": {
+              "required": false,
+              "enum": ["desfile_carnavalesco", "licenca_anual", "desfile_anual", "estatutos_anual", "vazio", "passeata", "estatutos_anual_desfile", "desfile_ensaio", "ensaio", "estatutos", "baile", "mudanca_administrativa", "ze_pereira", "renovacao", "carros_alegorias", "criacao", "outro", "itinerario", "escolta_policial", "recurso"]
+            }
+          },
+          {
+            "name": "Tipo_licenca_componentes",
+            "type": "string",
+            "description": "Componentes semânticos do tipo de licença, separados por pipe (|). Permite múltiplos valores por registro, habilitando análise combinatória. Quatorze componentes possíveis: desfile_carnavalesco (641), licenca_anual (527), estatutos (138), passeata (75), ensaio (24), ze_pereira (19), mudanca_administrativa (9), carros_alegorias (8), baile (6), renovacao (5), criacao (1), itinerario (1), escolta_policial (1), recurso (1). 325 registros (27,6%) possuem mais de um componente. Campo vazio quando o tipo de licença original está em branco.",
+            "constraints": {
+              "required": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "sociedades-carnavalescas-original",
+      "path": "Sociedades Carnavalescas 1900-1914 GIFI-AN.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "dialect": {
+        "delimiter": ",",
+        "quoteChar": "\"",
+        "header": true
+      },
+      "description": "Versão original do CSV, preservada tal como coletada. Datas no formato DD/MM/AAAA, booleanos como True/False. Não contém a coluna 'Data_original'."
+    }
+  ]
+}

@@ -1,72 +1,1830 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Sociedades Carnavalescas - RJ, 1900-1914 - Pedidos de licença - GIFI-AN</title>
-    <meta name="author" content="Eric Brasil">
-    <meta content="Banco de dados produzido a partir da documentação do GIFI-AN, durante pesquisa de doutorado." />
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sociedades Carnavalescas — RJ, 1900–1914 | GIFI/AN</title>
+  <meta name="description" content="Banco de dados de pedidos de licença de sociedades carnavalescas do Rio de Janeiro, 1900–1914. Documentação do GIFI-Arquivo Nacional.">
+  <meta name="author" content="Eric Brasil">
+  <meta name="keywords" content="carnaval, Rio de Janeiro, sociedades carnavalescas, licença policial, pós-abolição, GIFI, Arquivo Nacional, história social, história digital, humanidades digitais">
+  <meta name="robots" content="index, follow">
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/dataTables.bootstrap.css" rel="stylesheet">
+  <!-- Dublin Core -->
+  <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+  <meta name="DC.title" content="Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900–1914 — GIFI/AN">
+  <meta name="DC.creator" content="Brasil, Eric">
+  <meta name="DC.subject" content="carnaval; sociedades carnavalescas; licença policial; Rio de Janeiro; pós-abolição; Arquivo Nacional; história social; história digital; humanidades digitais">
+  <meta name="DC.description" content="1.178 registros de pedidos de licença de sociedades carnavalescas do Rio de Janeiro (1900–1914), provenientes do fundo GIFI do Arquivo Nacional.">
+  <meta name="DC.publisher" content="GitHub Pages">
+  <meta name="DC.date" content="2016">
+  <meta name="DC.type" content="Dataset">
+  <meta name="DC.format" content="text/csv">
+  <meta name="DC.identifier" content="https://ericbrasil.com.br/sociedades-carnavalescas/">
+  <meta name="DC.source" content="Arquivo Nacional (Brasil). Diversos GIFI - Caixas e Códices. Código OI. 1808–1966.">
+  <meta name="DC.language" content="pt-BR">
+  <meta name="DC.rights" content="CC BY 4.0">
+  <meta name="DC.relation" content="https://doi.org/10.13140/RG.2.2.31670.83521/1">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script type="text/javascript" src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script type="text/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900–1914",
+    "description": "1.178 registros de pedidos de licença de sociedades carnavalescas do Rio de Janeiro (1900–1914), provenientes do fundo GIFI do Arquivo Nacional (Brasil), série 6C.",
+    "author": {
+      "@type": "Person",
+      "name": "Eric Brasil",
+      "affiliation": "UNILAB"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://ericbrasil.com.br/sociedades-carnavalescas/",
+    "sameAs": "https://doi.org/10.13140/RG.2.2.31670.83521/1",
+    "creator": {
+      "@type": "Person",
+      "name": "Eric Brasil"
+    },
+    "datePublished": "2016",
+    "dateModified": "2025-05",
+    "spatialCoverage": "Rio de Janeiro, Brasil",
+    "temporalCoverage": "1900/1914",
+    "inLanguage": "pt-BR",
+    "keywords": ["carnaval", "sociedades carnavalescas", "licença policial", "Rio de Janeiro", "pós-abolição", "Arquivo Nacional", "GIFI", "história digital", "humanidades digitais"],
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "https://ericbrasil.com.br/sociedades-carnavalescas/data/sociedades-carnavalescas-normalizado.csv",
+        "name": "CSV normalizado (ISO 8601)"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "https://ericbrasil.com.br/sociedades-carnavalescas/data/Sociedades Carnavalescas 1900-1914 GIFI-AN.csv",
+        "name": "CSV original"
+      }
+    ],
+    "isBasedOn": {
+      "@type": "ArchiveComponent",
+      "name": "Diversos GIFI - Caixas e Códices",
+      "heldBy": {
+        "@type": "ArchiveOrganization",
+        "name": "Arquivo Nacional (Brasil)",
+        "address": "Praça da República, 173, Rio de Janeiro, Brasil"
+      },
+      "identifier": "OI"
+    }
+  }
+  </script>
 
-  <body>
-    <div class="container-fluid">
-      <p align="center"><img src="images/capa-SC.png" width="100%"/></p>
-      <h4 align="center"><strong>Eric Brasil</strong> (Prof. de História da UNILAB, campus dos Malês).</h4>
+  <!-- Fuse.js (fuzzy search) -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 
-      <p>Banco de dados produzido a partir da documentação do <a href="http://dibrarq.arquivonacional.gov.br/index.php/diversos-gifi-caixas-e-codices">GIFI-AN</a> relativa aos pedidos de licença de clubes e associações. Fez parte da pesquisa de <a href = 'https://www.academia.edu/25758607/Carnavais_Atl%C3%A2nticos_cidadania_e_cultura_negra_no_p%C3%B3s-aboli%C3%A7%C3%A3o._Rio_de_Janeiro_e_Port-of-Spain_Trinidad_1838-1920_'>doutorado</a> realizada no PPGH-UFF entre 2012 e 2016.</p>
-      <p><strong>Não deixem de ler as informações</strong>: <a href='https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/tree/gh-pages'>Código</a> e <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/blob/gh-pages/README.md">informações acadêmicas e metodológicas</a> no Github.</p>
-      <p>Acesse o <a href="https://ericbrasiln.github.io/">site pessoal</a> e siga no <a href="https://twitter.com/ericbrasiln"> Twitter</a> para entrar em contato e encontrar mais informações sobre pesquisas em História Digital e História Social da Cultura.</p>
-      
-      <div id='table-container'></div>
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --text: #2d2416;
+      --text-secondary: #6b5e4f;
+      --accent: #c4492a;
+      --accent-hover: #a83b20;
+      --gold: #d4a843;
+      --gold-light: #f5e6b8;
+      --border: #e8dfd0;
+      --highlight: #fff8e7;
+      --tag-bg: #f0e8d8;
+      --shadow-sm: 0 1px 3px rgba(45,36,22,.08);
+      --shadow-md: 0 4px 12px rgba(45,36,22,.1);
+      --radius: 8px;
+      --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-display: Georgia, 'Times New Roman', serif;
+      --max-width: 1200px;
+    }
 
-    </div><!-- /.container -->
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <footer class='footer'>
-      <div class='container-fluid'>
-        <hr />
-        <p class='pull-right'>Página produzida a partir do <a href='https://github.com/derekeder/csv-to-html-table'>código de Derek Eder</a>.</p>
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--bg);
+      color: var(--fg);
+      padding: 0;
+      text-align: center;
+      position: relative;
+    }
+    .hero .top-line {
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 50%, var(--accent) 100%);
+    }
+    .hero .hero-inner {
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+    }
+    .hero .ornament {
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 1em;
+      margin-bottom: .5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      letter-spacing: .02em;
+      color: var(--accent);
+      margin-bottom: .4rem;
+      position: static;
+    }
+    .hero .subtitle {
+      font-size: clamp(.95rem, 2.5vw, 1.1rem);
+      color: var(--brown);
+      max-width: 600px;
+      margin: 0 auto .75rem;
+    }
+    .hero .meta {
+      font-size: .82rem;
+      color: #888;
+    }
+    .hero .meta a { color: var(--accent); text-decoration: none; }
+    .hero .meta a:hover { text-decoration: underline; }
+    .hero .bottom-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* STATS */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .75rem;
+      padding: 1.5rem 0;
+      margin-bottom: 1rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-card .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-card .stat-label {
+      font-size: .75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-top: .25rem;
+    }
+
+    /* SEARCH & FILTERS */
+    .search-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .search-row {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search-input-wrap {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+    .search-input-wrap input {
+      width: 100%;
+      padding: .65rem 1rem .65rem 2.5rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-family: var(--font-body);
+      transition: border-color .2s;
+      background: var(--bg);
+    }
+    .search-input-wrap input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .search-input-wrap::before {
+      content: '⌕';
+      position: absolute;
+      left: .75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+    .search-select {
+      padding: .6rem .75rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .search-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .search-add-btn {
+      padding: .6rem 1rem;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    .search-add-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .search-clear-btn {
+      padding: .6rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .search-clear-btn:hover {
+      background: #c4492a15;
+      border-color: #c4492a;
+      color: #c4492a;
+    }
+    .search-terms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .5rem;
+      min-height: 0;
+    }
+    .search-term {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .25rem .6rem;
+      border-radius: 20px;
+      font-size: .8rem;
+      background: var(--gold)22;
+      border: 1px solid var(--gold);
+      color: var(--text);
+    }
+    .search-term .term-label { font-weight: 600; }
+    .search-term .term-field { opacity: .7; font-size: .72rem; }
+    .search-term .term-remove {
+      cursor: pointer;
+      font-size: .9rem;
+      line-height: 1;
+      opacity: .6;
+      margin-left: .2rem;
+    }
+    .search-term .term-remove:hover { opacity: 1; }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: .55rem 1rem;
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface);
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+    .download-btn:hover {
+      background: var(--gold);
+      color: #fff;
+    }
+    .result-count {
+      font-size: .85rem;
+      color: var(--text-secondary);
+    }
+    .result-count strong { color: var(--accent); }
+
+    /* FACETS */
+    .facets {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-top: .75rem;
+    }
+    .facet-group { display: flex; gap: .35rem; align-items: center; flex-wrap: wrap; }
+    .facet-group-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    .facet-btn {
+      padding: .3rem .7rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: .8rem;
+      background: var(--surface);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all .2s;
+      font-family: var(--font-body);
+    }
+    .facet-btn:hover { border-color: var(--gold); color: var(--text); }
+    .facet-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .facet-btn .count {
+      font-size: .7rem;
+      opacity: .7;
+      margin-left: .2rem;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+    .tab-btn {
+      padding: .6rem 1.25rem;
+      border: none;
+      background: none;
+      font-family: var(--font-body);
+      font-size: .9rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all .2s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* TABLE */
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+      background: var(--surface);
+    }
+    thead { position: sticky; top: 0; z-index: 10; }
+    th {
+      background: #3d2f1e;
+      color: #faf8f5;
+      padding: .65rem .75rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+    }
+    th:hover { background: #4a3728; }
+    th .sort-arrow { margin-left: .3rem; font-size: .65rem; opacity: .4; }
+    th.sorted .sort-arrow { opacity: 1; }
+    td {
+      padding: .5rem .75rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 280px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    tr:hover td { background: var(--highlight); }
+    .tag {
+      display: inline-block;
+      padding: .15rem .45rem;
+      border-radius: 4px;
+      font-size: .7rem;
+      font-weight: 600;
+    }
+    .tag-yes { background: #e8f5e9; color: #2e7d32; }
+    .tag-no { background: #ffebee; color: #c62828; }
+    .highlight { background: var(--gold-light); padding: 0 2px; border-radius: 2px; }
+
+    /* CHARTS */
+    .charts-intro {
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+    .charts-intro p { margin-bottom: .5rem; }
+    .charts-intro ul { padding-left: 1.25rem; margin: .5rem 0; }
+    .charts-intro li { margin-bottom: .25rem; }
+    .charts-intro strong { color: var(--text); }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .chart-card h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      margin-bottom: .75rem;
+      color: var(--text);
+    }
+    .chart-card canvas { width: 100% !important; }
+
+    /* ABOUT */
+    .about {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .about h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin-bottom: .75rem;
+      color: var(--text);
+    }
+    .about p {
+      color: var(--text-secondary);
+      font-size: .9rem;
+      margin-bottom: .75rem;
+    }
+    .about h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-top: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    .about ul {
+      padding-left: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    .about li {
+      color: var(--text-secondary);
+      font-size: .9rem;
+      line-height: 1.6;
+      margin-bottom: .35rem;
+    }
+    .about a { color: var(--accent); }
+    .cite-box {
+      background: var(--bg);
+      border-left: 3px solid var(--gold);
+      padding: .75rem 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .8rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      font-family: monospace;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .8rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .site-footer a { color: var(--accent); }
+
+    /* LOADING */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+    .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin-right: .75rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      margin-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .pagination button {
+      padding: .4rem .85rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      font-size: .85rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all .2s;
+    }
+    .pagination button:hover:not(:disabled) { border-color: var(--gold); background: var(--highlight); }
+    .pagination button:disabled { opacity: .3; cursor: default; }
+    .pagination .page-info { font-size: .85rem; color: var(--text-secondary); }
+
+    /* DETAIL MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(45,36,22,.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 560px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: .75rem; right: .75rem;
+      border: none;
+      background: none;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .modal-close:hover { color: var(--accent); }
+    .modal h2 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: .75rem; }
+    .modal .field { margin-bottom: .5rem; }
+    .modal .field-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--text-secondary);
+    }
+    .modal .field-value { font-size: .95rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hero .hero-inner { padding: 1.5rem 1rem 1.25rem; }
+      .stats-bar { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+      .stat-card { padding: .6rem; }
+      .stat-card .stat-num { font-size: 1.3rem; }
+      .charts-grid { grid-template-columns: 1fr; }
+      td, th { font-size: .75rem; padding: .4rem .5rem; }
+    }
+
+    /* Hidden panels */
+    .panel { display: none; }
+    .panel.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="top-line"></div>
+    <div class="hero-inner">
+      <div class="ornament">— ◆ —</div>
+      <h1>Sociedades Carnavalescas</h1>
+      <p class="subtitle">Pedidos de licença — Rio de Janeiro, 1900–1914</p>
+      <p class="subtitle" style="font-size:.9rem; opacity:.7;">Documentação do GIFI — Arquivo Nacional</p>
+      <p class="meta">
+        <a href="https://ericbrasil.com.br/">Eric Brasil</a> ·
+        <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ">GitHub</a> ·
+        DOI: <a href="http://dx.doi.org/10.13140/RG.2.2.31670.83521/1">10.13140/RG.2.2.31670.83521/1</a>
+      </p>
+    </div>
+    <div class="bottom-line"></div>
+  </header>
+
+  <!-- STATS -->
+  <div class="container">
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-card"><div class="stat-num" id="stat-total">–</div><div class="stat-label">Registros</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-sociedades">–</div><div class="stat-label">Sociedades</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-licencas">–</div><div class="stat-label">Com licença</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-presidentes">–</div><div class="stat-label">Com assinatura</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-periodo">–</div><div class="stat-label">Período</div></div>
+    </div>
+
+    <!-- SEARCH & FILTERS -->
+    <div class="search-section">
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <input type="text" id="search-input" placeholder="Buscar em todos os campos…" autocomplete="off">
+        </div>
+        <select id="search-field" class="search-select" title="Campo de busca">
+          <option value="">Todos os campos</option>
+          <option value="Nome da Sociedade">Sociedade</option>
+          <option value="Endereço">Endereço</option>
+          <option value="Presidente">Assinatura</option>
+          <option value="Tipo de licença">Tipo de licença</option>
+          <option value="Tipo_licenca_categoria">Categoria (normalizada)</option>
+          <option value="Tipo_licenca_componentes">Componentes</option>
+          <option value="Notação-GIFI">Notação-GIFI</option>
+          <option value="Obs">Observações</option>
+          <option value="Data_original">Data</option>
+        </select>
+        <select id="search-op" class="search-select" title="Operador lógico">
+          <option value="AND">E (AND)</option>
+          <option value="OR">Ou (OR)</option>
+          <option value="NOT">Não (NOT)</option>
+        </select>
+        <button id="search-add-btn" class="search-add-btn" title="Adicionar termo de busca">Incluir</button>
+        <button id="search-clear-btn" class="search-clear-btn" title="Limpar todos os termos">Limpar</button>
       </div>
-    </footer>
+      <div id="search-terms" class="search-terms"></div>
+      <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;">
+        <a href="data/sociedades-carnavalescas-normalizado.csv" download class="download-btn" title="Baixar CSV normalizado (ISO 8601)">⬇ CSV</a>
+        <span class="result-count" id="result-count"></span>
+      </div>
+      <div class="facets">
+        <div class="facet-group">
+          <span class="facet-group-label">Licença:</span>
+          <button class="facet-btn active" data-facet="Licença" data-value="">Todas</button>
+          <button class="facet-btn" data-facet="Licença" data-value="1">Sim</button>
+          <button class="facet-btn" data-facet="Licença" data-value="0">Não</button>
+        </div>
+        <div class="facet-group">
+          <span class="facet-group-label">Estatuto:</span>
+          <button class="facet-btn active" data-facet="Estatuto" data-value="">Todos</button>
+          <button class="facet-btn" data-facet="Estatuto" data-value="1">Com estatuto</button>
+        </div>
+        <div class="facet-group">
+          <span class="facet-group-label">Lista de membros:</span>
+          <button class="facet-btn active" data-facet="Nomes/Sujeitos" data-value="">Todos</button>
+          <button class="facet-btn" data-facet="Nomes/Sujeitos" data-value="1">Com lista</button>
+        </div>
+        <div class="facet-group">
+          <span class="facet-group-label">Doc. policial:</span>
+          <button class="facet-btn active" data-facet="Doc policial" data-value="">Todos</button>
+          <button class="facet-btn" data-facet="Doc policial" data-value="1">Sim</button>
+        </div>
+        <div class="facet-group" id="facet-tipo-licenca">
+          <span class="facet-group-label">Tipo licença:</span>
+          <select id="facet-tipo-select" style="background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:.85rem;cursor:pointer;">
+            <option value="">Todas as categorias</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.csv.min.js"></script>
-    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript" src="js/csv_to_html_table.js"></script>
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tabela">Tabela</button>
+      <button class="tab-btn" data-tab="graficos">Visualizações</button>
+      <button class="tab-btn" data-tab="dicas">Dicas</button>
+      <button class="tab-btn" data-tab="sobre">Sobre</button>
+    </div>
 
+    <!-- TABLE PANEL -->
+    <div class="panel active" id="panel-tabela">
+      <div class="loading" id="table-loading">
+        <div class="spinner"></div>Carregando dados…
+      </div>
+      <div class="table-container" style="display:none;" id="table-wrap">
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th data-key="Código">Código <span class="sort-arrow">▲</span></th>
+              <th data-key="Nome da Sociedade">Sociedade <span class="sort-arrow">▲</span></th>
+              <th data-key="Data">Data <span class="sort-arrow">▲</span></th>
+              <th data-key="Tipo de licença">Tipo de licença <span class="sort-arrow">▲</span></th>
+              <th data-key="Tipo_licenca_categoria">Categoria <span class="sort-arrow">▲</span></th>
+              <th data-key="Endereço">Endereço <span class="sort-arrow">▲</span></th>
+              <th data-key="Licença">Licença <span class="sort-arrow">▲</span></th>
+              <th data-key="Estatuto">Estatuto <span class="sort-arrow">▲</span></th>
+              <th data-key="Notação-GIFI">Notação <span class="sort-arrow">▲</span></th>
+              <th data-key="Presidente">Assinatura <span class="sort-arrow">▲</span></th>
+              <th data-key="Obs">Obs <span class="sort-arrow">▲</span></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </div>
 
-    <script type="text/javascript">
-      function format_link(link){
-        if (link)
-          return "<a href='" + link + "' target='_blank'>" + link + "</a>";
-        else
-          return "";
+    <!-- CHARTS PANEL -->
+    <div class="panel" id="panel-graficos">
+      <div class="charts-intro">
+        <p>Os gráficos abaixo apresentam distribuições do conjunto de dados e reagem automaticamente aos filtros e termos de busca aplicados. Quando há filtros ativos, os gráficos exibem <strong>(filtrado)</strong> no título.</p>
+        <ul>
+          <li><strong>Registros por ano</strong> — quantidade de pedidos de licença por ano.</li>
+          <li><strong>Categoria de licença (total)</strong> — frequência absoluta das categorias normalizadas de tipo de licença.</li>
+          <li><strong>Categoria de licença ao longo do tempo</strong> — evolução temporal das categorias (top 6 + "Outros") como áreas empilhadas.</li>
+          <li><strong>Presença de elementos</strong> — quantos registros contêm licença, estatuto, licença anterior, lista de membros ou documento policial.</li>
+          <li><strong>Tipo de sociedade</strong> — classificação pelo primeiro termo do nome (Grupo, Sociedade, Clube etc.); tipos com menos de 8 ocorrências são agrupados em "Outros".</li>
+          <li><strong>Tipo de sociedade por ano (%)</strong> — proporção relativa de cada tipo de sociedade em cada ano (barras empilhadas a 100%).</li>
+        </ul>
+        <p style="font-size:.82rem;color:var(--text-secondary);">A metodologia de normalização dos dados está documentada em <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/tree/refactor/site-moderno/scripts" target="_blank" rel="noopener">scripts/README.md</a> no repositório.</p>
+      </div>
+      <div class="charts-grid" id="charts-container"></div>
+    </div>
+
+    <!-- TIPS PANEL -->
+    <div class="panel" id="panel-dicas">
+      <div class="about">
+        <h2>Dicas de pesquisa</h2>
+
+        <h3>Busca avançada</h3>
+        <ul>
+          <li><strong>Busca por campo</strong> — use o seletor à esquerda da barra de busca para pesquisar apenas em Sociedade, Endereço, Assinatura, Tipo de licença, Categoria, Componentes, Notação-GIFI, Observações ou Data. A opção "Todos os campos" busca em todos.</li>
+          <li><strong>Operadores lógicos</strong> — ao adicionar mais de um termo, escolha como combiná-los:
+            <ul>
+              <li><strong>AND</strong> (padrão) — o registro deve conter <em>todos</em> os termos</li>
+              <li><strong>OR</strong> — o registro pode conter <em>qualquer</em> um dos termos</li>
+              <li><strong>NOT</strong> — o registro deve conter o termo anterior, mas <em>não</em> o termo seguinte</li>
+            </ul>
+          </li>
+          <li><strong>Termos múltiplos</strong> — clique em <em>Incluir</em> ou pressione Enter para adicionar cada termo como um chip. Remova individualmente com × ou limpe todos com <em>Limpar</em>.</li>
+          <li><strong>Busca fuzzy</strong> — a busca tolera variações de grafia e acentuação (ex.: "freitas" encontra "Freitas"; "ze pereira" encontra "zé pereira").</li>
+        </ul>
+
+        <h3>Exemplos de busca</h3>
+        <ul>
+          <li><strong>Sociedades carnavalescas de Oswaldo Cruz</strong> — campo: Endereço, termo: "oswaldo cruz"</li>
+          <li><strong>Pedidos recusados ou indeferidos</strong> — campo: Observações, termo: "indeferido" OR "recusado"</li>
+          <li><strong>Desfiles sem licença anual</strong> — faceta Categoria: desfile_carnavalesco, depois NOT licenca_anual na busca por tipo</li>
+          <li><strong>Sociedades com lista de membros</strong> — faceta Lista de membros: Com lista</li>
+          <li><strong>Todos os clubes</strong> — campo: Sociedade, termo: "clube"</li>
+          <li><strong>Zé-pereira e congêneres</strong> — campo: Componentes, termo: "ze_pereira"</li>
+        </ul>
+
+        <h3>Facetas e filtros</h3>
+        <ul>
+          <li>Use os botões de faceta para filtrar rapidamente: presença de <strong>licença</strong>, <strong>estatuto</strong>, <strong>lista de membros</strong>, <strong>documento policial</strong> ou <strong>categoria de licença</strong>.</li>
+          <li>Combinação de facetas com termos de busca é possível e recomendada para refinar resultados.</li>
+          <li>Os gráficos na aba <em>Visualizações</em> reagem automaticamente aos filtros e buscas ativos.</li>
+        </ul>
+
+        <h3>Gráficos interativos</h3>
+        <ul>
+          <li>Passe o mouse sobre qualquer gráfico para ver os valores exatos.</li>
+          <li>Os gráficos de <strong>Categoria de licença ao longo do tempo</strong> e <strong>Tipo de sociedade por ano (%)</strong> usam áreas/barras empilhadas — ideal para comparar proporções entre anos.</li>
+          <li>Quando há filtros ativos, os gráficos mostram <strong>(filtrado)</strong> no título e exibem apenas os dados filtrados.</li>
+        </ul>
+
+        <h3>Tabela e ficha detalhada</h3>
+        <ul>
+          <li>Clique em qualquer <strong>cabeçalho de coluna</strong> para ordenar crescente/decrescente.</li>
+          <li>Clique em qualquer <strong>linha</strong> para abrir a ficha detalhada com todos os campos do registro.</li>
+          <li>Datas são exibidas no formato brasileiro (DD/MM/AAAA), mas processadas como ISO 8601 internamente.</li>
+          <li>Colunas booleanas mostram ✓ (sim) ou ✗ (não).</li>
+        </ul>
+
+        <h3>Dados e download</h3>
+        <ul>
+          <li>O botão <strong>Baixar CSV</strong> exporta o CSV normalizado completo (datas ISO, booleanos 0/1, categorias controladas).</li>
+          <li>O <a href="data/datapackage.json" target="_blank" rel="noopener">datapackage.json</a> descreve a estrutura do dataset seguindo a especificação Frictionless Data.</li>
+          <li>O <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ/tree/refactor/site-moderno/scripts" target="_blank" rel="noopener">pipeline de normalização</a> está documentado e versionado no repositório.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ABOUT PANEL -->
+    <div class="panel" id="panel-sobre">
+      <div class="about">
+        <h2>Sobre o banco de dados</h2>
+        <p>Este banco de dados foi produzido a partir da documentação do <strong>Grupo de Identificação de Fundos Internos (GIFI)</strong> do <strong>Arquivo Nacional</strong>, durante a pesquisa de doutorado de Eric Brasil (UFF, 2012–2016). A tese, intitulada <em>Carnavais Atlânticos: cidadania e cultura negra no pós-abolição. Rio de Janeiro e Port-of-Spain, Trinidad (1838–1920)</em>, analisou transnacionalmente experiências de mobilização negra através dos carnavais.</p>
+        <p>O banco reúne 1.178 registros de pedidos de licença de sociedades carnavalescas, contendo nomes, endereços, profissões, estatutos, além da movimentação e argumentação das forças policiais sobre a concessão ou não das licenças.</p>
+        <p>A publicização desse banco visa tornar acessível a qualquer pessoa parte dos dados produzidos na pesquisa, como recurso para pesquisas em história social da cultura da cidade do Rio de Janeiro no início do século XX.</p>
+        <h2 style="margin-top:1.75rem;">Colunas do dataset</h2>
+        <ul>
+          <li><strong>Código</strong> — identificador numérico do registro</li>
+          <li><strong>Nome da Sociedade</strong> — nome da entidade carnavalesca</li>
+          <li><strong>Data</strong> — data do pedido de licença (formato ISO 8601: AAAA-MM-DD)</li>
+          <li><strong>Data_original</strong> — data no formato original do arquivo (DD/MM/AAAA)</li>
+          <li><strong>Endereço</strong> — endereço da associação</li>
+          <li><strong>Licença</strong> — se contém pedido de licença (1=sim, 0=não)</li>
+          <li><strong>Estatuto</strong> — se contém estatuto (1=sim, 0=não)</li>
+          <li><strong>Notação-GIFI</strong> — referência arquivística</li>
+          <li><strong>Tipo de licença</strong> — descrição original do tipo de licença solicitada (texto livre, 152 valores únicos)</li>
+          <li><strong>Tipo_licenca_categoria</strong> — categoria normalizada do tipo de licença, mutuamente exclusiva (20 categorias: desfile_carnavalesco, licenca_anual, desfile_anual, etc.)</li>
+          <li><strong>Tipo_licenca_componentes</strong> — componentes semânticos do tipo de licença, separados por pipe | (14 componentes possíveis; 27,6% dos registros têm mais de um)</li>
+          <li><strong>Obs</strong> — observações da pesquisa</li>
+          <li><strong>Presidente</strong> — signatário do pedido (presidente, secretário, vice, tesoureiro etc.)</li>
+          <li><strong>Licença anterior</strong> — se há registro de licença anterior (1=sim, 0=não)</li>
+          <li><strong>Nomes/Sujeitos</strong> — se há lista de membros ou diretoria (1=sim, 0=não)</li>
+          <li><strong>Doc policial</strong> — se é documento interno da polícia (1=sim, 0=não)</li>
+        </ul>
+        <h2 style="margin-top:1.75rem;">Como citar</h2>
+        <div class="cite-box">BRASIL, Eric. <em>Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 — GIFI/AN</em>. 2016. Disponível em &lt;https://ericbrasil.com.br/sociedades-carnavalescas/&gt;. DOI: http://dx.doi.org/10.13140/RG.2.2.31670.83521/1</div>
+
+        <h2 style="margin-top:1.75rem;">BibTeX</h2>
+        <div class="cite-box">@misc{sociedades-carnavalescas-RJ,<br>
+&nbsp;&nbsp;author = {Eric Brasil},<br>
+&nbsp;&nbsp;title = {Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 1900-1914 — GIFI/AN},<br>
+&nbsp;&nbsp;year = {2016},<br>
+&nbsp;&nbsp;publisher = {GitHub},<br>
+&nbsp;&nbsp;howpublished = {\\url{https://ericbrasil.com.br/sociedades-carnavalescas/}},<br>
+&nbsp;&nbsp;doi = {10.13140/RG.2.2.31670.83521/1}<br>
+}</div>
+
+        <h2 style="margin-top:1.75rem;">Princípios FAIR</h2>
+        <p>Este dataset segue os <a href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">princípios FAIR</a> (Findable, Accessible, Interoperable, Reusable):</p>
+        <ul>
+          <li><strong>Findable</strong> — DOI persistente (Zenodo), URL estável (GitHub Pages), metadados em <code>datapackage.json</code> (Frictionless Data), Dublin Core e Schema.org no HTML, keywords indexáveis</li>
+          <li><strong>Accessible</strong> — CSV aberto via HTTPS, sem autenticação, repositório público no GitHub, dados originais preservados junto à versão normalizada</li>
+          <li><strong>Interoperable</strong> — formato CSV (<code>text/csv</code>), datas ISO 8601, booleanos 0/1, vocabulário controlado com enum (<code>Tipo_licenca_categoria</code>, 20 categorias), componentes semânticos separados por <code>|</code>, pipeline de normalização versionado em <code>scripts/</code></li>
+          <li><strong>Reusable</strong> — CC BY 4.0 (dados) e MIT (código), atribuição com DOI da tese e ORCID, procedência do Arquivo Nacional/GIFI documentada, seção "Como citar" com BibTeX, reprodutibilidade garantida por 3 scripts idempotentes com <code>scripts/README.md</code></li>
+        </ul>
+
+        <h2 style="margin-top:1.75rem;">Procedência</h2>
+        <p>Os dados provêm do <strong>fundo GIFI</strong> (Grupo de Identificação de Fundos Internos) do <strong>Arquivo Nacional (Brasil)</strong>, série 6C — documentação da polícia e repartições do Ministério da Justiça. O GIFI foi formado em 1981 para identificar o acervo da antiga Seção do Poder Executivo que não havia recebido tratamento técnico. O fundo abrange documentos de 1808 a 1966, provenientes de múltiplos ministérios e órgãos, incluindo polícia, alfândega, estradas de ferro e tribunais.</p>
+        <p>A notação arquivística (coluna <em>Notação-GIFI</em>) segue o código <code>6cXXX</code> e permite localizar os documentos físicos no arquivo. Os 1.178 registros aqui publicados referem-se especificamente aos pedidos de licença de sociedades carnavalescas (1900–1914).</p>
+        <p><strong>Referência arquivística:</strong> Arquivo Nacional (Brasil). <em>Diversos GIFI — Caixas e Códices</em>. Código de referência: OI. Período: 1808–1966. Unidade custodiadora: Coordenação de Documentos Escritos (CODES). <a href="https://dibrarq.arquivonacional.gov.br/index.php/diversos-gifi-caixas-e-codices" target="_blank" rel="noopener">Ver no DiBArq</a></p>
+        <p><strong>Fonte bibliográfica:</strong> BRASIL, Eric. <em>Carnavais Atlânticos: cidadania e cultura negra no pós-abolição. Rio de Janeiro e Port-of-Spain, Trinidad (1838–1920)</em>. Tese (Doutorado em História Social) — Universidade Federal Fluminense, 2016.</p>
+
+        <h2 style="margin-top:1.75rem;">Dicionário de dados</h2>
+        <p>Um <a href="data/datapackage.json" target="_blank">Data Package (JSON)</a> descreve a estrutura completa do dataset — tipos de dados, descrições de cada coluna, valores ausentes, restrições e metadados de procedência — seguindo a especificação <a href="https://frictionlessdata.io/specs/data-package/" target="_blank" rel="noopener">Frictionless Data</a>.</p>
+
+        <h2 style="margin-top:1.75rem;">Download</h2>
+        <p>Baixe o <a href="data/sociedades-carnavalescas-normalizado.csv" download>CSV normalizado</a> com todos os 1.178 registros (datas ISO 8601, booleanos 1/0). Também disponível o <a href="data/Sociedades Carnavalescas 1900-1914 GIFI-AN.csv" download>CSV original</a> com formato preservado.</p>
+
+        <h2 style="margin-top:1.75rem;">Uso de inteligência artificial</h2>
+        <p>Em conformidade com o Art. 9º, inciso I, alínea «c», da <a href="https://www.in.gov.br/web/dou/-/portaria-cnpq-n-2.664-de-6-de-marco-de-2026-612498498" target="_blank" rel="noopener">Portaria CNPq nº 2.664/2026</a>, declaramos que a ferramenta de inteligência artificial generativa <strong>Hermes Agent</strong> foi utilizada na atualização deste site e na normalização dos dados. As ferramentas de IAG auxiliaram na estruturação do HTML/CSS/JS, na classificação semântica da coluna «Tipo de licença» em categorias controladas e na geração dos scripts de normalização. O conteúdo final, os dados originais, a análise e as decisões metodológicas são de inteira responsabilidade do autor.</p>
+
+        <h2 style="margin-top:1.75rem;">Licença</h2>
+        <p><strong>Dados:</strong> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)</a> — livre uso, distribuição e adaptação, com atribuição. <strong>Código-fonte</strong> do site: MIT License — Eric Brasil, 2021.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>Banco de dados Sociedades Carnavalescas RJ · Eric Brasil · <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ">GitHub</a></p>
+    <p>Dados do GIFI-Arquivo Nacional · 1900–1914 · Pesquisa de doutorado UFF (2012–2016)</p>
+    <p>Atualização do site com auxílio de <a href="https://www.in.gov.br/web/dou/-/portaria-cnpq-n-2.664-de-6-de-marco-de-2026-612498498" target="_blank" rel="noopener">IAG</a>: Hermes Agent</p>
+  </footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // STATE
+  let DATA = [];
+  let filtered = [];
+  let fuse = null;
+  let sortKey = 'Código';
+  let sortAsc = true;
+  let currentPage = 0;
+  const PAGE_SIZE = 50;
+  let activeFacets = {
+    'Licença': '',
+    'Estatuto': '',
+    'Nomes/Sujeitos': '',
+    'Doc policial': ''
+  };
+  let searchTerms = []; // [{query, field, op}]
+  let chartInstances = {};
+
+  // LOAD DATA
+  async function loadData() {
+    try {
+      const resp = await fetch('data/sociedades-carnavalescas-normalizado.csv');
+      const text = await resp.text();
+      const rows = text.trim().split('\n');
+      const headers = parseCSVLine(rows[0]);
+      for (let i = 1; i < rows.length; i++) {
+        const vals = parseCSVLine(rows[i]);
+        if (vals.length < headers.length) continue;
+        const obj = {};
+        headers.forEach((h, j) => obj[h] = vals[j] || '');
+        // Parse date (ISO format: YYYY-MM-DD, YYYY-MM, YYYY, or empty)
+        obj._year = obj.Data ? obj.Data.substring(0, 4) : '';
+        obj._sortKey = parseISODate(obj.Data);
+        DATA.push(obj);
+      }
+      fuse = new Fuse(DATA, {
+        keys: [
+          { name: 'Nome da Sociedade', weight: 3 },
+          { name: 'Presidente', weight: 2 },
+          { name: 'Endereço', weight: 2 },
+          { name: 'Tipo de licença', weight: 1.5 },
+          { name: 'Tipo_licenca_categoria', weight: 1.5 },
+          { name: 'Tipo_licenca_componentes', weight: 1 },
+          { name: 'Notação-GIFI', weight: 1 },
+          { name: 'Obs', weight: 1 },
+          { name: 'Data_original', weight: 0.5 }
+        ],
+        threshold: 0.35,
+        ignoreLocation: true,
+        includeMatches: true
+      });
+
+      applyFilters();
+      renderStats();
+      updateCharts();
+      initTipoLicencaFacet();
+      document.getElementById('table-loading').style.display = 'none';
+      document.getElementById('table-wrap').style.display = 'block';
+    } catch(e) {
+      console.error('Error loading CSV:', e);
+      document.getElementById('table-loading').textContent = 'Erro ao carregar dados.';
+    }
+  }
+
+  // Simple CSV line parser (handles quoted fields)
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (inQuotes) {
+        if (ch === '"') {
+          if (i + 1 < line.length && line[i+1] === '"') { current += '"'; i++; }
+          else inQuotes = false;
+        } else {
+          current += ch;
+        }
+      } else {
+        if (ch === '"') inQuotes = true;
+        else if (ch === ',') { result.push(current.trim()); current = ''; }
+        else current += ch;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  }
+
+  function parseISODate(iso) {
+    if (!iso) return 0;
+    // Year-only: "1909"
+    if (iso.length === 4) { const y = parseInt(iso); return isNaN(y) ? 0 : new Date(y, 0, 1).getTime(); }
+    // Year-month: "1912-03"
+    if (iso.length === 7) { const [y, m] = iso.split('-'); return new Date(parseInt(y), parseInt(m)-1, 15).getTime(); }
+    // Full: "1905-02-27"
+    if (iso.length === 10) { const [y, m, d] = iso.split('-'); return new Date(parseInt(y), parseInt(m)-1, parseInt(d)).getTime(); }
+    return 0;
+  }
+
+  // FILTERING
+  function applyFilters() {
+    let result = DATA.slice();
+
+    // Apply facets
+    for (const [facet, value] of Object.entries(activeFacets)) {
+      if (value) result = result.filter(r => r[facet] === value);
+    }
+
+    // Apply search terms (AND/OR/NOT logic with field-specific Fuse)
+    if (searchTerms.length > 0 && fuse) {
+      let searchResult = null; // null = no filter applied yet
+
+      for (const term of searchTerms) {
+        const q = term.query;
+        if (q.length < 2) continue;
+
+        // Search via Fuse.js — scoped to field if specified
+        let matches;
+        if (term.field) {
+          const fieldFuse = new Fuse(DATA, {
+            keys: [{ name: term.field, weight: 1 }],
+            threshold: 0.35,
+            ignoreLocation: true,
+            includeMatches: true
+          });
+          matches = new Set(fieldFuse.search(q).map(fr => fr.item));
+        } else {
+          matches = new Set(fuse.search(q).map(fr => fr.item));
+        }
+
+        if (term.op === 'AND') {
+          if (searchResult === null) {
+            searchResult = matches;
+          } else {
+            searchResult = new Set([...searchResult].filter(item => matches.has(item)));
+          }
+        } else if (term.op === 'OR') {
+          if (searchResult === null) {
+            searchResult = matches;
+          } else {
+            searchResult = new Set([...searchResult, ...matches]);
+          }
+        } else if (term.op === 'NOT') {
+          if (searchResult === null) {
+            searchResult = new Set(DATA.filter(item => !matches.has(item)));
+          } else {
+            searchResult = new Set([...searchResult].filter(item => !matches.has(item)));
+          }
+        }
       }
 
-      CsvToHtmlTable.init({
-        csv_path: 'data/Sociedades Carnavalescas 1900-1914 GIFI-AN-v2.csv',
-        element: 'table-container', 
-        allow_download: true,
-        csv_options: {separator: ',', delimiter: '"'},
-        datatables_options: {"paging": true},
-        custom_formatting: [[4, format_link]]
-      });
-    </script>
-  </body>
+      if (searchResult !== null) {
+        result = result.filter(r => searchResult.has(r));
+      }
+    }
+
+    filtered = result;
+    sortData();
+    currentPage = 0;
+    renderTable();
+    updateResultCount();
+    updateCharts();
+  }
+
+  function updateResultCount() {
+    const el = document.getElementById('result-count');
+    if (filtered.length === DATA.length) {
+      el.innerHTML = `<strong>${DATA.length}</strong> registros`;
+    } else {
+      el.innerHTML = `<strong>${filtered.length}</strong> de ${DATA.length} registros`;
+    }
+  }
+
+  // SORTING
+  function sortData() {
+    filtered.sort((a, b) => {
+      let va = a[sortKey] || '';
+      let vb = b[sortKey] || '';
+      if (sortKey === 'Data') {
+        va = a._sortKey || 0;
+        vb = b._sortKey || 0;
+        return sortAsc ? va - vb : vb - va;
+      }
+      if (sortKey === 'Código') {
+        va = parseInt(va) || 0;
+        vb = parseInt(vb) || 0;
+        return sortAsc ? va - vb : vb - va;
+      }
+      // Boolean columns
+      if (['Licença','Estatuto','Licença anterior','Nomes/Sujeitos','Doc policial'].includes(sortKey)) {
+        va = va === 'True' ? 1 : 0;
+        vb = vb === 'True' ? 1 : 0;
+        return sortAsc ? va - vb : vb - va;
+      }
+      return sortAsc ? va.localeCompare(vb, 'pt-BR') : vb.localeCompare(va, 'pt-BR');
+    });
+  }
+
+  // RENDER
+  function renderStats() {
+    document.getElementById('stat-total').textContent = DATA.length;
+    const socs = new Set(DATA.map(r => r['Nome da Sociedade']));
+    document.getElementById('stat-sociedades').textContent = socs.size;
+    document.getElementById('stat-licencas').textContent = DATA.filter(r => r['Licença'] === '1').length;
+    document.getElementById('stat-presidentes').textContent = DATA.filter(r => r.Presidente && r.Presidente.trim()).length;
+    document.getElementById('stat-periodo').textContent = '1900–1914';
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('table-body');
+    const start = currentPage * PAGE_SIZE;
+    const page = filtered.slice(start, start + PAGE_SIZE);
+
+    tbody.innerHTML = page.map(r => {
+      const boolTag = (v) => formatBool(v);
+      const highlightText = (text, fieldName) => {
+        if (searchTerms.length === 0) return escHtml(text);
+        let result = escHtml(text);
+        for (const term of searchTerms) {
+          if (term.query.length < 2) continue;
+          // Only highlight in the relevant field (or all if no field specified)
+          if (term.field && term.field !== fieldName) continue;
+          const re = new RegExp(`(${escRegex(term.query)})`, 'gi');
+          result = result.replace(re, '<span class="highlight">$1</span>');
+        }
+        return result;
+      };
+      return `<tr style="cursor:pointer" data-code="${escAttr(r.Código)}">
+        <td>${escHtml(r.Código)}</td>
+        <td>${highlightText(r['Nome da Sociedade'], 'Nome da Sociedade')}</td>
+        <td>${formatDate(escHtml(r.Data))}</td>
+        <td>${highlightText(r['Tipo de licença'], 'Tipo de licença')}</td>
+        <td>${formatCategoria(r)}</td>
+        <td>${highlightText(r.Endereço, 'Endereço')}</td>
+        <td>${boolTag(r.Licença)}</td>
+        <td>${boolTag(r.Estatuto)}</td>
+        <td>${highlightText(r['Notação-GIFI'], 'Notação-GIFI')}</td>
+        <td>${highlightText(r.Presidente, 'Presidente')}</td>
+        <td>${highlightText(r.Obs, 'Obs')}</td>
+      </tr>`;
+    }).join('');
+
+    renderPagination();
+  }
+
+  function renderPagination() {
+    const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+    const el = document.getElementById('pagination');
+    if (totalPages <= 1) { el.innerHTML = ''; return; }
+    const start = currentPage * PAGE_SIZE + 1;
+    const end = Math.min((currentPage + 1) * PAGE_SIZE, filtered.length);
+    let html = `<button ${currentPage === 0 ? 'disabled' : ''} onclick="window.__prevPage()">← Anterior</button>`;
+    html += `<span class="page-info">${start}–${end} de ${filtered.length}</span>`;
+    html += `<button ${currentPage >= totalPages - 1 ? 'disabled' : ''} onclick="window.__nextPage()">Próxima →</button>`;
+    el.innerHTML = html;
+  }
+
+  window.__prevPage = () => { if (currentPage > 0) { currentPage--; renderTable(); } };
+  window.__nextPage = () => { currentPage++; renderTable(); };
+
+  // MODAL
+  function showModal(r) {
+    const boolLabel = (v) => {
+      if (v === '1') return '✓ Sim';
+      if (v === '0') return '✗ Não';
+      return '–';
+    };
+    const fields = [
+      ['Código', r.Código],
+      ['Nome da Sociedade', r['Nome da Sociedade']],
+      ['Data', formatDate(r.Data)],
+      ['Data (original)', r.Data_original || '–'],
+      ['Endereço', r.Endereço],
+      ['Licença', boolLabel(r.Licença)],
+      ['Estatuto', boolLabel(r.Estatuto)],
+      ['Notação-GIFI', r['Notação-GIFI']],
+      ['Tipo de licença', r['Tipo de licença']],
+      ['Categoria', formatCategoriaModal(r['Tipo_licenca_categoria'])],
+      ['Componentes', formatComponentes(r['Tipo_licenca_componentes'])],
+      ['Observações', r.Obs],
+      ['Assinatura', r.Presidente],
+      ['Licença anterior', boolLabel(r['Licença anterior'])],
+      ['Nomes/Sujeitos', boolLabel(r['Nomes/Sujeitos'])],
+      ['Documento policial', boolLabel(r['Doc policial'])],
+    ];
+    document.getElementById('modal-body').innerHTML =
+      `<h2>${escHtml(r['Nome da Sociedade'])}</h2>` +
+      fields.map(([label, val]) =>
+        `<div class="field"><div class="field-label">${label}</div><div class="field-value">${val || '–'}</div></div>`
+      ).join('');
+    document.getElementById('modal-overlay').classList.add('active');
+  }
+
+  document.getElementById('modal-close').onclick = () => document.getElementById('modal-overlay').classList.remove('active');
+  document.getElementById('modal-overlay').onclick = (e) => { if (e.target === e.currentTarget) document.getElementById('modal-overlay').classList.remove('active'); };
+
+  // TABLE CLICK → MODAL
+  document.getElementById('table-body').addEventListener('click', (e) => {
+    const row = e.target.closest('tr');
+    if (!row) return;
+    const code = row.dataset.code;
+    const r = DATA.find(d => d.Código === code);
+    if (r) showModal(r);
+  });
+
+  // TABS
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'graficos') {
+        renderCharts();
+      }
+    });
+  });
+
+  // SEARCH — Advanced search with field selector and AND/OR/NOT
+  const FIELD_LABELS = {
+    '': 'Todos os campos',
+    'Nome da Sociedade': 'Sociedade',
+    'Endereço': 'Endereço',
+    'Presidente': 'Assinatura',
+    'Tipo de licença': 'Tipo de licença',
+    'Tipo_licenca_categoria': 'Categoria',
+    'Tipo_licenca_componentes': 'Componentes',
+    'Notação-GIFI': 'Notação-GIFI',
+    'Obs': 'Observações',
+    'Data_original': 'Data'
+  };
+  const OP_LABELS = { 'AND': 'E', 'OR': 'Ou', 'NOT': 'Não' };
+
+  function addSearchTerm() {
+    const input = document.getElementById('search-input');
+    const fieldSelect = document.getElementById('search-field');
+    const opSelect = document.getElementById('search-op');
+    const query = input.value.trim();
+    if (query.length < 2) return;
+
+    const term = {
+      query: query,
+      field: fieldSelect.value,
+      op: opSelect.value
+    };
+    searchTerms.push(term);
+    input.value = '';
+    renderSearchTerms();
+    applyFilters();
+  }
+
+  function removeSearchTerm(index) {
+    searchTerms.splice(index, 1);
+    renderSearchTerms();
+    applyFilters();
+  }
+
+  function renderSearchTerms() {
+    const container = document.getElementById('search-terms');
+    if (searchTerms.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    container.innerHTML = searchTerms.map((term, i) => {
+      const fieldLabel = FIELD_LABELS[term.field] || 'Todos';
+      const opLabel = OP_LABELS[term.op] || term.op;
+      const opColor = term.op === 'AND' ? 'var(--accent)' : term.op === 'OR' ? '#4a8c5c' : '#c4492a';
+      return `<span class="search-term">
+        ${i > 0 ? `<span style="color:${opColor};font-weight:700;font-size:.72rem;margin-right:.2rem;">${term.op}</span>` : ''}
+        <span class="term-label">${escHtml(term.query)}</span>
+        <span class="term-field">${fieldLabel}</span>
+        <span class="term-remove" onclick="window.__removeTerm(${i})" title="Remover">×</span>
+      </span>`;
+    }).join('');
+  }
+
+  // Expose for onclick
+  window.__removeTerm = removeSearchTerm;
+
+  let searchTimeout;
+  document.getElementById('search-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addSearchTerm();
+    }
+  });
+  document.getElementById('search-add-btn').addEventListener('click', addSearchTerm);
+
+  // CLEAR ALL SEARCH TERMS
+  document.getElementById('search-clear-btn').addEventListener('click', () => {
+    searchTerms = [];
+    document.getElementById('search-input').value = '';
+    renderSearchTerms();
+    applyFilters();
+  });
+
+  // Also support live filtering as you type (adds as pending term)
+  document.getElementById('search-input').addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    // Don't auto-add on input — user needs to press Enter or click +
+  });
+
+  // FACETS
+  document.querySelectorAll('.facet-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const facet = btn.dataset.facet;
+      const value = btn.dataset.value;
+      activeFacets[facet] = value;
+      // Update button states
+      document.querySelectorAll(`.facet-btn[data-facet="${facet}"]`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    });
+  });
+
+  // SORT
+  document.querySelectorAll('th[data-key]').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.key;
+      if (sortKey === key) sortAsc = !sortAsc;
+      else { sortKey = key; sortAsc = true; }
+      document.querySelectorAll('th').forEach(t => t.classList.remove('sorted'));
+      th.classList.add('sorted');
+      th.querySelector('.sort-arrow').textContent = sortAsc ? '▲' : '▼';
+      sortData();
+      renderTable();
+    });
+  });
+
+  // CHARTS
+  function updateCharts() {
+    // Only re-render if charts panel is visible
+    const panel = document.getElementById('panel-graficos');
+    if (panel.classList.contains('active')) {
+      renderCharts();
+    }
+  }
+
+  function renderCharts() {
+    // Destroy existing chart instances to avoid canvas reuse errors
+    Object.values(chartInstances).forEach(c => c.destroy());
+    chartInstances = {};
+
+    const source = filtered.length > 0 ? filtered : DATA;
+    const isFiltered = filtered.length !== DATA.length;
+    const filterTag = isFiltered ? ' <span style="font-size:.75rem;color:var(--text-secondary)">(filtrado)</span>' : '';
+
+    const container = document.getElementById('charts-container');
+    container.innerHTML = `
+      <div class="chart-card"><h3>Registros por ano${filterTag}</h3><canvas id="chart-year"></canvas></div>
+      <div class="chart-card"><h3>Categoria de licença (total)${filterTag}</h3><canvas id="chart-tipo"></canvas></div>
+      <div class="chart-card"><h3>Categoria de licença ao longo do tempo${filterTag}</h3><canvas id="chart-tipo-tempo"></canvas></div>
+      <div class="chart-card"><h3>Presença de elementos${filterTag}</h3><canvas id="chart-bool"></canvas></div>
+      <div class="chart-card"><h3>Tipo de sociedade${filterTag}</h3><canvas id="chart-top-soc"></canvas></div>
+      <div class="chart-card"><h3>Tipo de sociedade por ano (%)${filterTag}</h3><canvas id="chart-soc-tempo"></canvas></div>
+    `;
+
+    // --- 1. Year distribution ---
+    const yearCounts = {};
+    source.forEach(r => {
+      const y = r._year;
+      if (y) yearCounts[y] = (yearCounts[y] || 0) + 1;
+    });
+    const years = Object.keys(yearCounts).sort();
+    chartInstances.year = new Chart(document.getElementById('chart-year'), {
+      type: 'bar',
+      data: {
+        labels: years,
+        datasets: [{
+          label: 'Registros',
+          data: years.map(y => yearCounts[y]),
+          backgroundColor: '#c4492a',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // --- 2. License type categories (total) ---
+    const tipoCounts = {};
+    source.forEach(r => {
+      const t = r['Tipo_licenca_categoria'] || '';
+      if (t && t !== 'vazio') tipoCounts[t] = (tipoCounts[t] || 0) + 1;
+    });
+    const tiposSorted = Object.entries(tipoCounts).sort((a,b) => b[1] - a[1]).slice(0, 15);
+
+    // Color palette for categories
+    const catColors = [
+      '#c4492a', '#d4a843', '#4a8c5c', '#3d2f1e', '#7a5230',
+      '#b85c38', '#e8c170', '#6b8f71', '#8b4513', '#2e4057',
+      '#a52a2a', '#daa520', '#556b2f', '#8fbc8f', '#cd853f'
+    ];
+    const catLabelsChart = {
+      'desfile_carnavalesco': 'Desfile carnavalesco',
+      'licenca_anual': 'Licença anual',
+      'desfile_anual': 'Desfile + anual',
+      'estatutos_anual': 'Estatutos + anual',
+      'estatutos_anual_desfile': 'Estatutos + anual + desfile',
+      'desfile_ensaio': 'Desfile + ensaio',
+      'passeata': 'Passeata',
+      'ensaio': 'Ensaio',
+      'estatutos': 'Estatutos',
+      'baile': 'Baile',
+      'ze_pereira': 'Zé Pereira',
+      'mudanca_administrativa': 'Mudança adm.',
+      'renovacao': 'Renovação',
+      'carros_alegorias': 'Carros/alegorias',
+      'criacao': 'Criação',
+      'itinerario': 'Itinerário',
+      'escolta_policial': 'Escolta policial',
+      'recurso': 'Recurso',
+      'outro': 'Outro'
+    };
+
+    chartInstances.tipo = new Chart(document.getElementById('chart-tipo'), {
+      type: 'bar',
+      data: {
+        labels: tiposSorted.map(t => catLabelsChart[t[0]] || t[0]),
+        datasets: [{
+          label: 'Registros',
+          data: tiposSorted.map(t => t[1]),
+          backgroundColor: tiposSorted.map((_, i) => catColors[i % catColors.length]),
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    // --- 3. License type categories over time (stacked area) ---
+    // Get top 6 categories for readability
+    const topCats = tiposSorted.slice(0, 6).map(t => t[0]);
+    const yearCatCounts = {};
+    source.forEach(r => {
+      const y = r._year;
+      const t = r['Tipo_licenca_categoria'] || '';
+      if (!y || t === 'vazio') return;
+      if (!yearCatCounts[y]) yearCatCounts[y] = {};
+      const cat = topCats.includes(t) ? t : 'outros';
+      yearCatCounts[y][cat] = (yearCatCounts[y][cat] || 0) + 1;
+    });
+    const timeYears = Object.keys(yearCatCounts).sort();
+    const catDatasetColors = {
+      'desfile_carnavalesco': '#c4492a',
+      'licenca_anual': '#d4a843',
+      'desfile_anual': '#4a8c5c',
+      'estatutos_anual': '#3d2f1e',
+      'estatutos_anual_desfile': '#7a5230',
+      'desfile_ensaio': '#b85c38',
+      'outros': '#999'
+    };
+    const stackedDatasets = topCats.map(cat => ({
+      label: catLabelsChart[cat] || cat,
+      data: timeYears.map(y => (yearCatCounts[y] && yearCatCounts[y][cat]) || 0),
+      backgroundColor: catDatasetColors[cat] || '#888',
+      fill: true
+    }));
+    // Add "outros" aggregation
+    stackedDatasets.push({
+      label: 'Outros',
+      data: timeYears.map(y => (yearCatCounts[y] && yearCatCounts[y]['outros']) || 0),
+      backgroundColor: '#999',
+      fill: true
+    });
+
+    chartInstances.tipoTempo = new Chart(document.getElementById('chart-tipo-tempo'), {
+      type: 'line',
+      data: {
+        labels: timeYears,
+        datasets: stackedDatasets
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } }
+        },
+        scales: {
+          y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Registros' } },
+          x: { stacked: true }
+        }
+      }
+    });
+
+    // --- 4. Boolean fields ---
+    const boolFields = ['Licença', 'Estatuto', 'Licença anterior', 'Nomes/Sujeitos', 'Doc policial'];
+    const boolLabels = { 'Licença': 'Licença', 'Estatuto': 'Estatuto', 'Licença anterior': 'Licença anterior', 'Nomes/Sujeitos': 'Lista de membros', 'Doc policial': 'Doc. policial' };
+    const boolData = boolFields.map(f => ({
+      label: boolLabels[f] || f,
+      trueCount: source.filter(r => r[f] === '1').length
+    }));
+    chartInstances.bool = new Chart(document.getElementById('chart-bool'), {
+      type: 'bar',
+      data: {
+        labels: boolData.map(b => b.label),
+        datasets: [{
+          label: 'Presente',
+          data: boolData.map(b => b.trueCount),
+          backgroundColor: '#4a8c5c',
+          borderRadius: 4
+        }, {
+          label: 'Ausente',
+          data: boolData.map(b => source.length - b.trueCount),
+          backgroundColor: '#d4a843',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { x: { stacked: true }, y: { stacked: true } }
+      }
+    });
+
+    // --- 5. Tipo de sociedade (from first term of name) ---
+    const tipoSocMap = {
+      'grupo': 'Grupo', 'sociedade': 'Sociedade', 'clube': 'Clube',
+      'grêmio': 'Grêmio', 'gremio': 'Grêmio', 'congresso': 'Congresso',
+      'bloco': 'Bloco', 'bando': 'Bando', 'cordão': 'Cordão', 'cordao': 'Cordão',
+      'centro': 'Centro', 'estudantina': 'Estudantina', 'liga': 'Liga',
+      'rancho': 'Rancho', 'zé-pereira': 'Zé-Pereira', 'associação': 'Associação',
+      'associacao': 'Associação', 'coligação': 'Coligação', 'coligacao': 'Coligação'
+    };
+    const tipoSocCounts = {};
+    const mainSocTypes = new Set(['Grupo','Sociedade','Clube','Grêmio','Congresso','Bloco','Rancho']);
+    source.forEach(r => {
+      const s = (r['Nome da Sociedade'] || '').trim();
+      if (!s) return;
+      const first = s.split(/\s+/)[0].toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      let label = 'Outros';
+      for (const [key, val] of Object.entries(tipoSocMap)) {
+        const keyNorm = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (first === keyNorm || first === key) {
+          label = mainSocTypes.has(val) ? val : 'Outros';
+          break;
+        }
+      }
+      tipoSocCounts[label] = (tipoSocCounts[label] || 0) + 1;
+    });
+    const tipoSocSorted = Object.entries(tipoSocCounts).sort((a,b) => b[1] - a[1]);
+    const tipoSocColors = ['#3d2f1e','#c4492a','#d4a843','#4a8c5c','#7a5230','#b85c38','#e8c170','#6b8f71','#8b4513','#2e4057','#a52a2a','#556b2f','#999'];
+    chartInstances.topSoc = new Chart(document.getElementById('chart-top-soc'), {
+      type: 'bar',
+      data: {
+        labels: tipoSocSorted.map(t => t[0]),
+        datasets: [{
+          label: 'Registros',
+          data: tipoSocSorted.map(t => t[1]),
+          backgroundColor: tipoSocSorted.map((_, i) => tipoSocColors[i % tipoSocColors.length]),
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    // --- 6. Tipo de sociedade por ano (proporção %, stacked bar) ---
+    const topSocTypes = [...mainSocTypes];
+    const yearSocCounts = {};
+    const yearSocTotals = {};
+    source.forEach(r => {
+      const y = r._year;
+      const s = (r['Nome da Sociedade'] || '').trim();
+      if (!y || !s) return;
+      const first = s.split(/\s+/)[0].toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      let label = 'Outros';
+      for (const [key, val] of Object.entries(tipoSocMap)) {
+        const keyNorm = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (first === keyNorm || first === key) {
+          label = mainSocTypes.has(val) ? val : 'Outros';
+          break;
+        }
+      }
+      if (!yearSocCounts[y]) yearSocCounts[y] = {};
+      yearSocCounts[y][label] = (yearSocCounts[y][label] || 0) + 1;
+      yearSocTotals[y] = (yearSocTotals[y] || 0) + 1;
+    });
+    const socTimeYears = Object.keys(yearSocCounts).sort();
+    const socColors = {
+      'Grupo': '#3d2f1e', 'Sociedade': '#c4492a', 'Clube': '#d4a843',
+      'Grêmio': '#4a8c5c', 'Congresso': '#7a5230', 'Bloco': '#b85c38',
+      'Rancho': '#e8c170', 'Outros': '#999'
+    };
+    const socTimeDatasets = topSocTypes.map(cat => ({
+      label: cat,
+      data: socTimeYears.map(y => {
+        const raw = (yearSocCounts[y] && yearSocCounts[y][cat]) || 0;
+        const total = yearSocTotals[y] || 1;
+        return Math.round(raw / total * 1000) / 10;
+      }),
+      backgroundColor: socColors[cat] || '#888'
+    }));
+    // Always add Outros
+    socTimeDatasets.push({
+      label: 'Outros',
+      data: socTimeYears.map(y => {
+        const raw = (yearSocCounts[y] && yearSocCounts[y]['Outros']) || 0;
+        const total = yearSocTotals[y] || 1;
+        return Math.round(raw / total * 1000) / 10;
+      }),
+      backgroundColor: '#999'
+    });
+    chartInstances.socTempo = new Chart(document.getElementById('chart-soc-tempo'), {
+      type: 'bar',
+      data: {
+        labels: socTimeYears,
+        datasets: socTimeDatasets
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          y: { stacked: true, min: 0, max: 100, title: { display: true, text: 'Proporção (%)' }, ticks: { callback: v => v + '%' } },
+          x: { stacked: true }
+        }
+      }
+    });
+  }
+
+  // FACET: Tipo de licença (dropdown)
+  function initTipoLicencaFacet() {
+    const select = document.getElementById('facet-tipo-select');
+    const catCounts = {};
+    DATA.forEach(r => {
+      const cat = r['Tipo_licenca_categoria'] || '';
+      if (cat && cat !== 'vazio') catCounts[cat] = (catCounts[cat] || 0) + 1;
+    });
+    const catLabels = {
+      'desfile_carnavalesco': 'Desfile carnavalesco',
+      'licenca_anual': 'Licença anual',
+      'desfile_anual': 'Desfile + anual',
+      'estatutos_anual': 'Estatutos + anual',
+      'estatutos_anual_desfile': 'Estatutos + anual + desfile',
+      'desfile_ensaio': 'Desfile + ensaio',
+      'passeata': 'Passeata',
+      'ensaio': 'Ensaio',
+      'estatutos': 'Estatutos',
+      'baile': 'Baile',
+      'ze_pereira': 'Zé Pereira',
+      'mudanca_administrativa': 'Mudança administrativa',
+      'renovacao': 'Renovação',
+      'carros_alegorias': 'Carros/alegorias',
+      'criacao': 'Criação',
+      'itinerario': 'Itinerário',
+      'escolta_policial': 'Escolta policial',
+      'recurso': 'Recurso',
+      'outro': 'Outro',
+    };
+    Object.entries(catCounts).sort((a,b) => b[1] - a[1]).forEach(([cat, count]) => {
+      const opt = document.createElement('option');
+      opt.value = cat;
+      opt.textContent = `${catLabels[cat] || cat} (${count})`;
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', () => {
+      const val = select.value;
+      if (val) {
+        activeFacets['Tipo_licenca_categoria'] = val;
+      } else {
+        delete activeFacets['Tipo_licenca_categoria'];
+      }
+      applyFilters();
+    });
+  }
+
+  // FORMAT HELPERS
+  function formatDate(iso) {
+    if (!iso) return '–';
+    // Year-only: "1909"
+    if (iso.length === 4) return iso;
+    // Year-month: "1912-03"
+    if (iso.length === 7) {
+      const [y, m] = iso.split('-');
+      return `${m}/${y}`;
+    }
+    // Full: "1905-02-27"
+    if (iso.length === 10) {
+      const [y, m, d] = iso.split('-');
+      return `${d}/${m}/${y}`;
+    }
+    return iso;
+  }
+
+  function formatBool(v) {
+    if (v === '1') return '<span class="tag tag-yes">✓</span>';
+    if (v === '0') return '<span class="tag tag-no">✗</span>';
+    return v;
+  }
+
+  const catLabels = {
+    'desfile_carnavalesco': 'Desfile carnavalesco',
+    'licenca_anual': 'Licença anual',
+    'desfile_anual': 'Desfile + anual',
+    'estatutos_anual': 'Estatutos + anual',
+    'estatutos_anual_desfile': 'Estatutos + anual + desfile',
+    'desfile_ensaio': 'Desfile + ensaio',
+    'passeata': 'Passeata',
+    'ensaio': 'Ensaio',
+    'estatutos': 'Estatutos',
+    'baile': 'Baile',
+    'ze_pereira': 'Zé Pereira',
+    'mudanca_administrativa': 'Mudança administrativa',
+    'renovacao': 'Renovação',
+    'carros_alegorias': 'Carros/alegorias',
+    'vazio': '–',
+    'criacao': 'Criação',
+    'itinerario': 'Itinerário',
+    'escolta_policial': 'Escolta policial',
+    'recurso': 'Recurso',
+    'outro': 'Outro',
+  };
+  const catColors = {
+    'desfile_carnavalesco': '#c4492a',
+    'licenca_anual': '#4a8c5c',
+    'desfile_anual': '#d4a843',
+    'estatutos_anual': '#6b5b3a',
+    'estatutos_anual_desfile': '#8b6914',
+    'desfile_ensaio': '#e07020',
+    'passeata': '#3d9b8f',
+    'ensaio': '#7b68ee',
+    'estatutos': '#a0522d',
+    'baile': '#db7093',
+    'ze_pereira': '#cd853f',
+    'mudanca_administrativa': '#708090',
+    'renovacao': '#4682b4',
+    'carros_alegorias': '#ff6347',
+    'vazio': '#999',
+    'criacao': '#2e8b57',
+    'itinerario': '#8fbc8f',
+    'escolta_policial': '#556b2f',
+    'recurso': '#b8860b',
+    'outro': '#666',
+  };
+  function formatCategoria(r) {
+    const cat = r['Tipo_licenca_categoria'] || '';
+    const label = catLabels[cat] || cat;
+    const color = catColors[cat] || '#666';
+    if (!cat || cat === 'vazio') return '<span style="color:#999">–</span>';
+    return `<span style="background:${color}22;color:${color};padding:2px 6px;border-radius:4px;font-size:.78rem;white-space:nowrap;" title="${escHtml(r['Tipo de licença'] || '')}">${label}</span>`;
+  }
+
+  function formatCategoriaModal(cat) {
+    if (!cat || cat === 'vazio') return '–';
+    return `<span style="background:${(catColors[cat]||'#666')}22;color:${(catColors[cat]||'#666')};padding:2px 8px;border-radius:4px;font-weight:500;">${catLabels[cat] || cat}</span>`;
+  }
+
+  function formatComponentes(comp) {
+    if (!comp) return '–';
+    return comp.split('|').map(c => {
+      const label = catLabels[c] || c;
+      const color = catColors[c] || '#666';
+      return `<span style="background:${color}22;color:${color};padding:1px 6px;border-radius:3px;font-size:.82rem;margin:2px;display:inline-block;">${label}</span>`;
+    }).join('');
+  }
+
+  // ESCAPE helpers
+  function escHtml(s) {
+    if (!s) return '';
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function escAttr(s) { return escHtml(s); }
+  function escRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  // KEYBOARD
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.getElementById('modal-overlay').classList.remove('active');
+  });
+
+  // INIT
+  loadData();
+})();
+</script>
+</body>
 </html>
