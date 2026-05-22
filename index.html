@@ -743,7 +743,7 @@
           <li><strong>Registros por ano</strong> — quantidade de pedidos de licença por ano.</li>
           <li><strong>Categoria de licença (total)</strong> — frequência absoluta das categorias normalizadas de tipo de licença.</li>
           <li><strong>Categoria de licença ao longo do tempo</strong> — evolução temporal das categorias (top 6 + "Outros") como áreas empilhadas.</li>
-          <li><strong>Presença de elementos</strong> — quantos registros contêm licença, estatuto, licença anterior, nomes/sujeitos ou documento policial.</li>
+          <li><strong>Presença de elementos</strong> — quantos registros contêm licença, estatuto, licença anterior, lista de membros ou documento policial.</li>
           <li><strong>Tipo de sociedade</strong> — classificação pelo primeiro termo do nome (Grupo, Sociedade, Clube etc.); tipos com menos de 8 ocorrências são agrupados em "Outros".</li>
           <li><strong>Tipo de sociedade por ano (%)</strong> — proporção relativa de cada tipo de sociedade em cada ano (barras empilhadas a 100%).</li>
         </ul>
@@ -1419,8 +1419,9 @@
 
     // --- 4. Boolean fields ---
     const boolFields = ['Licença', 'Estatuto', 'Licença anterior', 'Nomes/Sujeitos', 'Doc policial'];
+    const boolLabels = { 'Licença': 'Licença', 'Estatuto': 'Estatuto', 'Licença anterior': 'Licença anterior', 'Nomes/Sujeitos': 'Lista de membros', 'Doc policial': 'Doc. policial' };
     const boolData = boolFields.map(f => ({
-      label: f,
+      label: boolLabels[f] || f,
       trueCount: source.filter(r => r[f] === '1').length
     }));
     chartInstances.bool = new Chart(document.getElementById('chart-bool'), {

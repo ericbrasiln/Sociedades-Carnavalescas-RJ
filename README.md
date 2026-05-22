@@ -15,9 +15,9 @@
 
 ## Funcionalidades
 
-- 🔍 **Busca avançada** — busca fuzzy com seletor de campo (Sociedade, Endereço, Presidente, etc.) e operadores lógicos (AND, OR, NOT); múltiplos termos acumuláveis
-- 🏷️ **Facetas** — filtre por presença de licença, estatuto, nomes/sujeitos, documento policial e categoria de tipo de licença
-- 📊 **Visualizações** — gráficos interativos: registros por ano, categorias de licença (total e ao longo do tempo), presença de elementos e sociedades mais mencionadas
+- 🔍 **Busca avançada** — busca fuzzy com seletor de campo (Sociedade, Endereço, Assinatura, Tipo de licença etc.) e operadores lógicos (AND, OR, NOT); múltiplos termos acumuláveis; botões Incluir e Limpar
+- 🏷️ **Facetas** — filtre por presença de licença, estatuto, lista de membros, documento policial e categoria de tipo de licença
+- 📊 **6 gráficos interativos** — registros por ano, categoria de licença (total e ao longo do tempo), presença de elementos, tipo de sociedade (total e proporção por ano); todos reativos aos filtros
 - 📋 **Ficha detalhada** — clique em qualquer registro para ver todos os campos, incluindo categoria e componentes normalizados
 - 📥 **Download CSV** — CSV normalizado (ISO 8601, booleanos 0/1, categorias controladas) disponível para download
 - 📱 **Responsivo** — funciona em desktop e celular
