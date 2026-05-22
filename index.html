@@ -230,6 +230,65 @@
       font-size: 1.2rem;
       color: var(--text-secondary);
     }
+    .search-select {
+      padding: .6rem .75rem;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .search-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .search-add-btn {
+      padding: .6rem 1rem;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    .search-add-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .search-terms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .5rem;
+      min-height: 0;
+    }
+    .search-term {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .25rem .6rem;
+      border-radius: 20px;
+      font-size: .8rem;
+      background: var(--gold)22;
+      border: 1px solid var(--gold);
+      color: var(--text);
+    }
+    .search-term .term-label { font-weight: 600; }
+    .search-term .term-field { opacity: .7; font-size: .72rem; }
+    .search-term .term-remove {
+      cursor: pointer;
+      font-size: .9rem;
+      line-height: 1;
+      opacity: .6;
+      margin-left: .2rem;
+    }
+    .search-term .term-remove:hover { opacity: 1; }
     .download-btn {
       display: inline-flex;
       align-items: center;
@@ -555,8 +614,29 @@
     <div class="search-section">
       <div class="search-row">
         <div class="search-input-wrap">
-          <input type="text" id="search-input" placeholder="Buscar por nome, endereço, presidente, notação…" autocomplete="off">
+          <input type="text" id="search-input" placeholder="Buscar em todos os campos…" autocomplete="off">
         </div>
+        <select id="search-field" class="search-select" title="Campo de busca">
+          <option value="">Todos os campos</option>
+          <option value="Nome da Sociedade">Sociedade</option>
+          <option value="Endereço">Endereço</option>
+          <option value="Presidente">Presidente</option>
+          <option value="Tipo de licença">Tipo de licença</option>
+          <option value="Tipo_licenca_categoria">Categoria (normalizada)</option>
+          <option value="Tipo_licenca_componentes">Componentes</option>
+          <option value="Notação-GIFI">Notação-GIFI</option>
+          <option value="Obs">Observações</option>
+          <option value="Data_original">Data</option>
+        </select>
+        <select id="search-op" class="search-select" title="Operador lógico">
+          <option value="AND">E (AND)</option>
+          <option value="OR">Ou (OR)</option>
+          <option value="NOT">Não (NOT)</option>
+        </select>
+        <button id="search-add-btn" class="search-add-btn" title="Adicionar Termo de Busca">＋ Termo</button>
+      </div>
+      <div id="search-terms" class="search-terms"></div>
+      <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;">
         <a href="data/sociedades-carnavalescas-normalizado.csv" download class="download-btn" title="Baixar CSV normalizado (ISO 8601)">⬇ CSV</a>
         <span class="result-count" id="result-count"></span>
       </div>
@@ -719,6 +799,7 @@
     'Nomes/Sujeitos': '',
     'Doc policial': ''
   };
+  let searchTerms = []; // [{query, field, op}]
   let chartInstances = {};
 
   // LOAD DATA
@@ -804,7 +885,6 @@
 
   // FILTERING
   function applyFilters() {
-    const query = document.getElementById('search-input').value.trim();
     let result = DATA.slice();
 
     // Apply facets
@@ -812,13 +892,52 @@
       if (value) result = result.filter(r => r[facet] === value);
     }
 
-    // Apply search
-    if (query.length >= 2 && fuse) {
-      const fuseResults = fuse.search(query);
-      const fuseItems = fuseResults.map(fr => fr.item);
-      // intersect
-      const fuseSet = new Set(fuseItems);
-      result = result.filter(r => fuseSet.has(r));
+    // Apply search terms (AND/OR/NOT logic with field-specific Fuse)
+    if (searchTerms.length > 0 && fuse) {
+      let searchResult = null; // null = no filter applied yet
+
+      for (const term of searchTerms) {
+        const q = term.query;
+        if (q.length < 2) continue;
+
+        // Search via Fuse.js — scoped to field if specified
+        let matches;
+        if (term.field) {
+          const fieldFuse = new Fuse(DATA, {
+            keys: [{ name: term.field, weight: 1 }],
+            threshold: 0.35,
+            ignoreLocation: true,
+            includeMatches: true
+          });
+          matches = new Set(fieldFuse.search(q).map(fr => fr.item));
+        } else {
+          matches = new Set(fuse.search(q).map(fr => fr.item));
+        }
+
+        if (term.op === 'AND') {
+          if (searchResult === null) {
+            searchResult = matches;
+          } else {
+            searchResult = new Set([...searchResult].filter(item => matches.has(item)));
+          }
+        } else if (term.op === 'OR') {
+          if (searchResult === null) {
+            searchResult = matches;
+          } else {
+            searchResult = new Set([...searchResult, ...matches]);
+          }
+        } else if (term.op === 'NOT') {
+          if (searchResult === null) {
+            searchResult = new Set(DATA.filter(item => !matches.has(item)));
+          } else {
+            searchResult = new Set([...searchResult].filter(item => !matches.has(item)));
+          }
+        }
+      }
+
+      if (searchResult !== null) {
+        result = result.filter(r => searchResult.has(r));
+      }
     }
 
     filtered = result;
@@ -877,26 +996,32 @@
     const tbody = document.getElementById('table-body');
     const start = currentPage * PAGE_SIZE;
     const page = filtered.slice(start, start + PAGE_SIZE);
-    const query = document.getElementById('search-input').value.trim();
 
     tbody.innerHTML = page.map(r => {
       const boolTag = (v) => formatBool(v);
-      const highlightText = (text) => {
-        if (!query || query.length < 2) return escHtml(text);
-        const re = new RegExp(`(${escRegex(query)})`, 'gi');
-        return escHtml(text).replace(re, '<span class="highlight">$1</span>');
+      const highlightText = (text, fieldName) => {
+        if (searchTerms.length === 0) return escHtml(text);
+        let result = escHtml(text);
+        for (const term of searchTerms) {
+          if (term.query.length < 2) continue;
+          // Only highlight in the relevant field (or all if no field specified)
+          if (term.field && term.field !== fieldName) continue;
+          const re = new RegExp(`(${escRegex(term.query)})`, 'gi');
+          result = result.replace(re, '<span class="highlight">$1</span>');
+        }
+        return result;
       };
       return `<tr style="cursor:pointer" data-code="${escAttr(r.Código)}">
         <td>${escHtml(r.Código)}</td>
-        <td>${highlightText(r['Nome da Sociedade'])}</td>
+        <td>${highlightText(r['Nome da Sociedade'], 'Nome da Sociedade')}</td>
         <td>${formatDate(escHtml(r.Data))}</td>
-        <td>${escHtml(r['Tipo de licença'])}</td>
+        <td>${highlightText(r['Tipo de licença'], 'Tipo de licença')}</td>
         <td>${formatCategoria(r)}</td>
-        <td>${highlightText(r.Endereço)}</td>
+        <td>${highlightText(r.Endereço, 'Endereço')}</td>
         <td>${boolTag(r.Licença)}</td>
         <td>${boolTag(r.Estatuto)}</td>
-        <td>${escHtml(r['Notação-GIFI'])}</td>
-        <td>${highlightText(r.Presidente)}</td>
+        <td>${highlightText(r['Notação-GIFI'], 'Notação-GIFI')}</td>
+        <td>${highlightText(r.Presidente, 'Presidente')}</td>
       </tr>`;
     }).join('');
 
@@ -976,11 +1101,80 @@
     });
   });
 
-  // SEARCH
+  // SEARCH — Advanced search with field selector and AND/OR/NOT
+  const FIELD_LABELS = {
+    '': 'Todos os campos',
+    'Nome da Sociedade': 'Sociedade',
+    'Endereço': 'Endereço',
+    'Presidente': 'Presidente',
+    'Tipo de licença': 'Tipo de licença',
+    'Tipo_licenca_categoria': 'Categoria',
+    'Tipo_licenca_componentes': 'Componentes',
+    'Notação-GIFI': 'Notação-GIFI',
+    'Obs': 'Observações',
+    'Data_original': 'Data'
+  };
+  const OP_LABELS = { 'AND': 'E', 'OR': 'Ou', 'NOT': 'Não' };
+
+  function addSearchTerm() {
+    const input = document.getElementById('search-input');
+    const fieldSelect = document.getElementById('search-field');
+    const opSelect = document.getElementById('search-op');
+    const query = input.value.trim();
+    if (query.length < 2) return;
+
+    const term = {
+      query: query,
+      field: fieldSelect.value,
+      op: opSelect.value
+    };
+    searchTerms.push(term);
+    input.value = '';
+    renderSearchTerms();
+    applyFilters();
+  }
+
+  function removeSearchTerm(index) {
+    searchTerms.splice(index, 1);
+    renderSearchTerms();
+    applyFilters();
+  }
+
+  function renderSearchTerms() {
+    const container = document.getElementById('search-terms');
+    if (searchTerms.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    container.innerHTML = searchTerms.map((term, i) => {
+      const fieldLabel = FIELD_LABELS[term.field] || 'Todos';
+      const opLabel = OP_LABELS[term.op] || term.op;
+      const opColor = term.op === 'AND' ? 'var(--accent)' : term.op === 'OR' ? '#4a8c5c' : '#c4492a';
+      return `<span class="search-term">
+        ${i > 0 ? `<span style="color:${opColor};font-weight:700;font-size:.72rem;margin-right:.2rem;">${term.op}</span>` : ''}
+        <span class="term-label">${escHtml(term.query)}</span>
+        <span class="term-field">${fieldLabel}</span>
+        <span class="term-remove" onclick="window.__removeTerm(${i})" title="Remover">×</span>
+      </span>`;
+    }).join('');
+  }
+
+  // Expose for onclick
+  window.__removeTerm = removeSearchTerm;
+
   let searchTimeout;
+  document.getElementById('search-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addSearchTerm();
+    }
+  });
+  document.getElementById('search-add-btn').addEventListener('click', addSearchTerm);
+
+  // Also support live filtering as you type (adds as pending term)
   document.getElementById('search-input').addEventListener('input', () => {
     clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(applyFilters, 200);
+    // Don't auto-add on input — user needs to press Enter or click +
   });
 
   // FACETS
