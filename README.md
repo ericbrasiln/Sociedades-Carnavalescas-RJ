@@ -70,7 +70,7 @@ O Banco de dados Sociedades Carnavalescas possui 1178 entradas, contendo as segu
 - **Obs** — comentários breves da época da pesquisa
 - **Presidente** — signatário do pedido (presidente, secretário, vice, tesoureiro etc.)
 - **Licença anterior** — se há registro de licença anterior (1=sim, 0=não)
-- **Nomes/Sujeitos** — se há referência aos membros ou diretoria (1=sim, 0=não)
+- **Nomes/Sujeitos** — se há lista de membros ou diretoria (1=sim, 0=não)
 - **Doc policial** — se é um documento interno da polícia (1=sim, 0=não)
 
 **As colunas booleanas (1/0) indicam se a informação consta na fonte.** Veja `scripts/README.md` para detalhes sobre a normalização.
