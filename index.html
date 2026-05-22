@@ -791,6 +791,15 @@
 &nbsp;&nbsp;doi = {10.13140/RG.2.2.31670.83521/1}<br>
 }</div>
 
+        <h2 style="margin-top:1.25rem;">Princípios FAIR</h2>
+        <p>Este dataset segue os <a href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">princípios FAIR</a> (Findable, Accessible, Interoperable, Reusable):</p>
+        <ul style="font-size:.85rem; color:var(--text-secondary); line-height:1.8; padding-left:1.25rem;">
+          <li><strong>Findable</strong> — DOI persistente (Zenodo), URL estável (GitHub Pages), metadados em <code>datapackage.json</code> (Frictionless Data), Dublin Core e Schema.org no HTML, keywords indexáveis</li>
+          <li><strong>Accessible</strong> — CSV aberto via HTTPS, sem autenticação, repositório público no GitHub, dados originais preservados junto à versão normalizada</li>
+          <li><strong>Interoperable</strong> — formato CSV (<code>text/csv</code>), datas ISO 8601, booleanos 0/1, vocabulário controlado com enum (<code>Tipo_licenca_categoria</code>, 20 categorias), componentes semânticos separados por <code>|</code>, pipeline de normalização versionado em <code>scripts/</code></li>
+          <li><strong>Reusable</strong> — CC BY 4.0 (dados) e MIT (código), atribuição com DOI da tese e ORCID, procedência do Arquivo Nacional/GIFI documentada, seção "Como citar" com BibTeX, reprodutibilidade garantida por 3 scripts idempotentes com <code>scripts/README.md</code></li>
+        </ul>
+
         <h2 style="margin-top:1.25rem;">Procedência</h2>
         <p>Os dados provêm do <strong>fundo GIFI</strong> (Grupo de Identificação de Fundos Internos) do <strong>Arquivo Nacional (Brasil)</strong>, série 6C — documentação da polícia e repartições do Ministério da Justiça. O GIFI foi formado em 1981 para identificar o acervo da antiga Seção do Poder Executivo que não havia recebido tratamento técnico. O fundo abrange documentos de 1808 a 1966, provenientes de múltiplos ministérios e órgãos, incluindo polícia, alfândega, estradas de ferro e tribunais.</p>
         <p>A notação arquivística (coluna <em>Notação-GIFI</em>) segue o código <code>6cXXX</code> e permite localizar os documentos físicos no arquivo. Os 1.178 registros aqui publicados referem-se especificamente aos pedidos de licença de sociedades carnavalescas (1900–1914).</p>

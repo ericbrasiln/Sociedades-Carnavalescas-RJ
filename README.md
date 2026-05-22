@@ -75,6 +75,36 @@ O Banco de dados Sociedades Carnavalescas possui 1178 entradas, contendo as segu
 
 **As colunas booleanas (1/0) indicam se a informação consta na fonte.** Veja `scripts/README.md` para detalhes sobre a normalização.
 
+## Princípios FAIR
+
+O dataset segue os princípios [FAIR](https://www.go-fair.org/fair-principles/) (Findable, Accessible, Interoperable, Reusable):
+
+### Findable (Encontrável)
+- Identificador persistente: DOI (Zenodo) + URL estável via GitHub Pages
+- Metadados rich: `datapackage.json` (schema Frictionless Data), Dublin Core e Schema.org no HTML
+- Keywords: sociedades carnavalescas, Rio de Janeiro, história digital, humanidades digitais, GIFI, Arquivo Nacional, pós-abolição, licença, carnaval
+
+### Accessible (Acessível)
+- Dados abertos em CSV via GitHub Pages e repositório público
+- Protocolo aberto (HTTPS), sem autenticação
+- Dados originais preservados (`data/`) ao lado da versão normalizada
+
+### Interoperable (Interoperável)
+- Formato aberto: CSV (`text/csv`)
+- Datas normalizadas em ISO 8601 (AAAA-MM-DD); formato original preservado em `Data_original`
+- Booleanos como 0/1 (sem ambiguidade textual)
+- Vocabulário controlado: `Tipo_licenca_categoria` (20 categorias com enum no `datapackage.json`)
+- Componentes semânticos: `Tipo_licenca_componentes` separados por `|`
+- Pipeline de normalização documentado e versionado em `scripts/`
+
+### Reusable (Reutilizável)
+- Licença de dados: CC BY 4.0
+- Licença de código: MIT
+- Atribuição clara: DOI da tese, ORCID do autor, procedência do Arquivo Nacional/GIFI
+- Proveniência documentada: fonte arquivística, referência ao fundo GIFI, série 6C
+- Seção "Como citar" com BibTeX
+- Reprodutibilidade: 3 scripts numerados, idempotentes, com `scripts/README.md`
+
 ## Questões técnicas e História Digital
 
 O site foi construído com HTML, CSS e JavaScript puros (sem frameworks), com Fuse.js para busca fuzzy e Chart.js para gráficos interativos. O CSV carrega client-side, sem necessidade de backend. Hospedado via GitHub Pages.
