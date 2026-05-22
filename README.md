@@ -126,6 +126,10 @@ BRASIL, Eric. *Banco de dados de Sociedades Carnavalescas do Rio de Janeiro, 190
 }
 ```
 
+## Uso de inteligência artificial
+
+Em conformidade com o Art. 9º, inciso I, alínea "c", da [Portaria CNPq nº 2.664/2026](https://www.in.gov.br/web/dou/-/portaria-cnpq-n-2.664-de-6-de-marco-de-2026-612498498), declaramos que a ferramenta de inteligência artificial generativa **Hermes Agent** foi utilizada na atualização deste site e na normalização dos dados (2025). As ferramentas de IAG auxiliaram na estruturação do HTML/CSS/JS, na classificação semântica da coluna "Tipo de licença" em categorias controladas e na geração dos scripts de normalização. O conteúdo final, os dados originais, a análise e as decisões metodológicas são de inteira responsabilidade do autor.
+
 ## Licença
 
 The MIT License (MIT)
