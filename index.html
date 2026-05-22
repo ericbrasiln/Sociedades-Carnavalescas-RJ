@@ -115,39 +115,50 @@
 
     /* HERO */
     .hero {
-      background: linear-gradient(135deg, #2d2416 0%, #3d2f1e 50%, #4a3728 100%);
-      color: #faf8f5;
-      padding: 3rem 1.5rem 2.5rem;
+      background: var(--bg);
+      color: var(--fg);
+      padding: 0;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(212,168,67,.15) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(196,73,42,.1) 0%, transparent 50%);
+    .hero .top-line {
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 50%, var(--accent) 100%);
     }
-    .hero * { position: relative; }
+    .hero .hero-inner {
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+    }
+    .hero .ornament {
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 1em;
+      margin-bottom: .5rem;
+    }
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(1.8rem, 5vw, 2.8rem);
       letter-spacing: .02em;
-      margin-bottom: .5rem;
+      color: var(--accent);
+      margin-bottom: .4rem;
+      position: static;
     }
     .hero .subtitle {
-      font-size: clamp(.95rem, 2.5vw, 1.15rem);
-      color: var(--gold-light);
+      font-size: clamp(.95rem, 2.5vw, 1.1rem);
+      color: var(--brown);
       max-width: 600px;
       margin: 0 auto .75rem;
     }
     .hero .meta {
-      font-size: .85rem;
-      color: rgba(250,248,245,.6);
+      font-size: .82rem;
+      color: #888;
     }
-    .hero .meta a { color: var(--gold); text-decoration: none; }
+    .hero .meta a { color: var(--accent); text-decoration: none; }
     .hero .meta a:hover { text-decoration: underline; }
+    .hero .bottom-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    }
 
     /* LAYOUT */
     .container {
@@ -601,7 +612,7 @@
 
     /* RESPONSIVE */
     @media (max-width: 640px) {
-      .hero { padding: 2rem 1rem 1.5rem; }
+      .hero .hero-inner { padding: 1.5rem 1rem 1.25rem; }
       .stats-bar { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
       .stat-card { padding: .6rem; }
       .stat-card .stat-num { font-size: 1.3rem; }
@@ -618,14 +629,19 @@
 
   <!-- HERO -->
   <header class="hero">
-    <h1>Sociedades Carnavalescas</h1>
-    <p class="subtitle">Pedidos de licença — Rio de Janeiro, 1900–1914</p>
-    <p class="subtitle" style="font-size:.9rem; opacity:.85;">Documentação do GIFI — Arquivo Nacional</p>
-    <p class="meta">
-      <a href="https://ericbrasil.com.br/">Eric Brasil</a> ·
-      <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ">GitHub</a> ·
-      DOI: <a href="http://dx.doi.org/10.13140/RG.2.2.31670.83521/1">10.13140/RG.2.2.31670.83521/1</a>
-    </p>
+    <div class="top-line"></div>
+    <div class="hero-inner">
+      <div class="ornament">— ◆ —</div>
+      <h1>Sociedades Carnavalescas</h1>
+      <p class="subtitle">Pedidos de licença — Rio de Janeiro, 1900–1914</p>
+      <p class="subtitle" style="font-size:.9rem; opacity:.7;">Documentação do GIFI — Arquivo Nacional</p>
+      <p class="meta">
+        <a href="https://ericbrasil.com.br/">Eric Brasil</a> ·
+        <a href="https://github.com/ericbrasiln/Sociedades-Carnavalescas-RJ">GitHub</a> ·
+        DOI: <a href="http://dx.doi.org/10.13140/RG.2.2.31670.83521/1">10.13140/RG.2.2.31670.83521/1</a>
+      </p>
+    </div>
+    <div class="bottom-line"></div>
   </header>
 
   <!-- STATS -->
